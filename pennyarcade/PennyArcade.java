@@ -26,7 +26,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 
-@Mod(modid= PennyArcade.MODID, name="Penny Arcade Mod", version="Pre-Alpha 0.0.2")
+@Mod(modid= PennyArcade.MODID, name="Penny Arcade Mod", version="Pre-Alpha 0.0.3")
 
 public class PennyArcade {
 	
