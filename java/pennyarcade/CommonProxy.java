@@ -2,8 +2,8 @@ package pennyarcade;
 
 public class CommonProxy {
 
-	//Client Stuff
+	// Client Stuff
 	public void registerRenderers() {
-		
+
 	}
 }

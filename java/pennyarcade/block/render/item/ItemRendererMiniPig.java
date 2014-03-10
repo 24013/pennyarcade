@@ -4,17 +4,18 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.IItemRenderer;
-import pennyarcade.block.render.model.ModelPennyPusher2;
-import pennyarcade.block.tileentity.TileEntityPennyPusher2;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import pennyarcade.block.render.model.ModelMiniPig;
+import pennyarcade.block.tileentity.TileEntityMiniPig;
 
-public class ItemRendererPennyPusher2 implements IItemRenderer {
-	
-	private ModelPennyPusher2 model;
+public class ItemRendererMiniPig implements IItemRenderer {
+
+	private ModelMiniPig model;
 	private TileEntity entity;
 	private TileEntitySpecialRenderer renderer;
-	
-	public ItemRendererPennyPusher2(TileEntitySpecialRenderer renderer, TileEntity te) {
-		model = new ModelPennyPusher2();
+
+	public ItemRendererMiniPig(TileEntitySpecialRenderer renderer, TileEntity te) {
+		model = new ModelMiniPig();
 		this.entity = te;
 		this.renderer = renderer;
 	}
@@ -31,7 +32,7 @@ public class ItemRendererPennyPusher2 implements IItemRenderer {
 	}
 
 	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {	
+	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		renderer.renderTileEntityAt(entity, 0.0D, 0.0D, 0.0D, 0.0F);
 	}
 
