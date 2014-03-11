@@ -6,15 +6,20 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
+import pennyarcade.block.BlockEmeraldPusher;
 import pennyarcade.block.BlockMiniCreeper;
 import pennyarcade.block.BlockMiniPig;
 import pennyarcade.block.BlockPennyPusher1;
 import pennyarcade.block.BlockPennyPusher2;
+import pennyarcade.block.BlockRubixCube;
+import pennyarcade.block.tileentity.TileEntityEmeraldPusher;
 import pennyarcade.block.tileentity.TileEntityMiniCreeper;
 import pennyarcade.block.tileentity.TileEntityMiniPig;
 import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
+import pennyarcade.block.tileentity.TileEntityRubixCube;
 import pennyarcade.entity.villager.VillagerTradeHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -23,7 +28,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 
 @Mod(modid = PennyArcade.MODID, name = "Penny Arcade Mod", version = "Pre-Alpha 0.0.3")
@@ -36,48 +40,52 @@ public class PennyArcade {
 	@SidedProxy(clientSide = "pennyarcade.ClientProxy", serverSide = "pennyarcade.CommonProxy")
 	public static CommonProxy proxyArcade;
 
-	// private ComponentVillage house = new ComponentCoinMerchantHouse();
-
-	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public static int pennyPusher1ID;
 	public static int pennyPusher2ID;
+	public static int pennyPusher3ID;
 
 	public static int miniCreeperID;
 	public static int miniPigID;
-
+	
+	public static int rubixCubeID;
+	
 	public static int goldCoinID;
 	public static int emeraldTokenID;
-
-	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public static Block pennyPusher1;
 	public static Block pennyPusher2;
+	public static Block pennyPusher3;
 
 	public static Block miniCreeper;
 	public static Block miniPig;
+	
+	public static Block rubixCube;
 
 	public static Item goldCoin;
 	public static Item emeraldToken;
 
-	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public static int coinChance;
 	public static int maxCoinAmount;
 	public static int prizeChance;
 
-	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public static CreativeTabs pennyArcadeTab;
 
-	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 
 		pennyArcadeTab = new CreativeTabs("pennyArcadeTab") {
 			public Item getTabIconItem() {
-				return Items.emerald;
+				return goldCoin;
 			}
 		};
 
@@ -86,19 +94,25 @@ public class PennyArcade {
 		config.load();
 
 		pennyPusher1ID = config.get(Configuration.CATEGORY_GENERAL,
-				"PennyPusher1ID", 4000).getInt();
+				"PennyPusher1ID", 3000).getInt();
 		pennyPusher2ID = config.get(Configuration.CATEGORY_GENERAL,
-				"PennyPusher2ID", 4001).getInt();
+				"PennyPusher2ID", 3001).getInt();
+		pennyPusher3ID = config.get(Configuration.CATEGORY_GENERAL,
+				"PennyPusher3ID", 3002).getInt();
 
 		miniCreeperID = config.get(Configuration.CATEGORY_GENERAL,
-				"MiniCreeperID", 4050).getInt();
+				"MiniCreeperID", 3050).getInt();
 		miniPigID = config.get(Configuration.CATEGORY_GENERAL, "MiniPigID",
-				4051).getInt();
+				3051).getInt();
+		
+		rubixCubeID = config.get(Configuration.CATEGORY_GENERAL, "RubixCubeID",
+				3070).getInt();
 
 		goldCoinID = config.get(Configuration.CATEGORY_GENERAL, "GoldCoinID",
 				10000).getInt();
 		emeraldTokenID = config.get(Configuration.CATEGORY_GENERAL,
 				"EmeraldTokenID", 10001).getInt();
+				
 
 		coinChance = config.get(Configuration.CATEGORY_GENERAL, "coinChance",
 				30, "The chance out of 100 that you win coins. Default of 30")
@@ -112,7 +126,7 @@ public class PennyArcade {
 				.getInt();
 
 		config.save();
-
+		
 		pennyPusher1 = new BlockPennyPusher1(pennyPusher1ID)
 				.setBlockName("pennyPusher1")
 				.setBlockTextureName(
@@ -125,6 +139,12 @@ public class PennyArcade {
 						PennyArcade.MODID
 								+ ":textures/blocks/model/pennyarcade/PennyPusher2")
 				.setCreativeTab(pennyArcadeTab);
+		pennyPusher3 = new BlockEmeraldPusher(pennyPusher3ID)
+		.setBlockName("pennyPusher3")
+		.setBlockTextureName(
+				PennyArcade.MODID
+						+ ":textures/blocks/model/pennyarcade/PennyPusher3")
+		.setCreativeTab(pennyArcadeTab);
 
 		miniCreeper = new BlockMiniCreeper(miniCreeperID)
 				.setBlockName("miniCreeper")
@@ -132,21 +152,29 @@ public class PennyArcade {
 						PennyArcade.MODID
 								+ ":textures/blocks/model/toys/MiniCreeper")
 				.setCreativeTab(pennyArcadeTab);
+		
 		miniPig = new BlockMiniPig(miniPigID)
 				.setBlockName("miniPig")
 				.setBlockTextureName(
 						PennyArcade.MODID
 								+ ":textures/blocks/model/toys/MiniPig")
 				.setCreativeTab(pennyArcadeTab);
+		
+		rubixCube = new BlockRubixCube(rubixCubeID)
+		.setBlockName("rubixCube")
+		.setBlockTextureName(
+				PennyArcade.MODID
+						+ ":textures/blocks/model/toys/rubix/RubixCube1")
+		.setCreativeTab(pennyArcadeTab);
+		
 
-		goldCoin = new Item(/* goldCoinID */).setUnlocalizedName("goldCoin")
+		goldCoin = new Item().setUnlocalizedName("goldCoin")
 				.setTextureName(PennyArcade.MODID + ":goldCoin")
 				.setCreativeTab(pennyArcadeTab);
-		emeraldToken = new Item(/* emeraldTokenID */)
+		emeraldToken = new Item()
 				.setUnlocalizedName("emeraldToken")
 				.setTextureName(PennyArcade.MODID + ":emeraldToken")
 				.setCreativeTab(pennyArcadeTab);
-
 		registerObjects();
 		addCraftingRecipes();
 	}
@@ -171,37 +199,57 @@ public class PennyArcade {
 						Items.emerald });
 		GameRegistry.addRecipe(new ItemStack(pennyPusher2, 1), new Object[] {
 				"IPI", "IGI", "III", Character.valueOf('I'),
-				Blocks.redstone_block, Character.valueOf('P'),
+				Items.redstone, Character.valueOf('P'),
 				Blocks.glass_pane, Character.valueOf('G'), Items.gold_ingot });
+		GameRegistry.addRecipe(new ItemStack(pennyPusher3, 1),
+				new Object[] { "IEI", "EPE", "IEI", Character.valueOf('I'),
+						Items.iron_ingot, Character.valueOf('P'),
+						Blocks.glass_pane, Character.valueOf('E'),
+						Items.emerald });
 	}
 
+
 	public void registerEntities() {
+		
 		GameRegistry.registerTileEntity(TileEntityPennyPusher1.class,
 				"pennyPusher1");
 		GameRegistry.registerTileEntity(TileEntityPennyPusher2.class,
 				"pennyPusher2");
+		GameRegistry.registerTileEntity(TileEntityEmeraldPusher.class,
+				"pennyPusher3");
 
 		GameRegistry.registerTileEntity(TileEntityMiniCreeper.class,
 				"miniCreeper");
 		GameRegistry.registerTileEntity(TileEntityMiniPig.class, "miniPig");
-
+		
+		GameRegistry.registerTileEntity(TileEntityRubixCube.class, "rubixCube");
+		 
 		registerVillagers();
 	}
 
 	public void registerObjects() {
+		
 		GameRegistry.registerBlock(pennyPusher1, "pennyPusher1");
 		GameRegistry.registerBlock(pennyPusher2, "pennyPusher2");
+		GameRegistry.registerBlock(pennyPusher3, "pennyPusher3");
 
 		GameRegistry.registerBlock(miniCreeper, "miniCreeper");
 		GameRegistry.registerBlock(miniPig, "miniPig");
-
+	
+		GameRegistry.registerBlock(rubixCube, "rubixCube");
+		
 		GameRegistry.registerItem(goldCoin, "goldCoin");
 		GameRegistry.registerItem(emeraldToken, "emeraldToken");
+		
 	}
 
 	public void registerVillagers() {
+		
+		VillagerRegistry.instance().registerVillagerId(10);
+		VillagerRegistry.instance().registerVillagerSkin(10, new ResourceLocation(PennyArcade.MODID + ":textures/entity/villager/CoinMerchant.png"));
+		
 		VillagerTradeHandler coinMerchant = new VillagerTradeHandler();
-		VillagerRegistry.instance().registerVillageTradeHandler(1, coinMerchant);
+		VillagerRegistry.instance().registerVillageTradeHandler(10, coinMerchant);
 	}
 
 }
