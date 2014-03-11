@@ -4,17 +4,20 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import pennyarcade.block.render.RenderEmeraldPusher;
 import pennyarcade.block.render.RenderMiniCreeper;
+import pennyarcade.block.render.RenderMiniEnderman;
 import pennyarcade.block.render.RenderMiniPig;
 import pennyarcade.block.render.RenderPennyPusher1;
 import pennyarcade.block.render.RenderPennyPusher2;
 import pennyarcade.block.render.RenderRubixCube;
 import pennyarcade.block.render.item.ItemRendererMiniCreeper;
+import pennyarcade.block.render.item.ItemRendererMiniEnderman;
 import pennyarcade.block.render.item.ItemRendererMiniPig;
 import pennyarcade.block.render.item.ItemRendererPennyPusher1;
 import pennyarcade.block.render.item.ItemRendererPennyPusher2;
 import pennyarcade.block.render.item.ItemRendererRubixCube;
 import pennyarcade.block.tileentity.TileEntityEmeraldPusher;
 import pennyarcade.block.tileentity.TileEntityMiniCreeper;
+import pennyarcade.block.tileentity.TileEntityMiniEnderman;
 import pennyarcade.block.tileentity.TileEntityMiniPig;
 import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
@@ -31,6 +34,7 @@ public class ClientProxy extends CommonProxy {
 
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniCreeper), new ItemRendererMiniCreeper(new RenderMiniCreeper(), new TileEntityMiniCreeper()));
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniPig), new ItemRendererMiniPig(new RenderMiniPig(), new TileEntityMiniPig()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniEnderman), new ItemRendererMiniEnderman(new RenderMiniEnderman(), new TileEntityMiniEnderman()));
 
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.rubixCube), new ItemRendererRubixCube(new RenderRubixCube(), new TileEntityRubixCube()));
 		/////////
@@ -41,6 +45,7 @@ public class ClientProxy extends CommonProxy {
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniCreeper.class, new RenderMiniCreeper());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniPig.class, new RenderMiniPig());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniEnderman.class, new RenderMiniEnderman());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRubixCube.class, new RenderRubixCube());
 	}
