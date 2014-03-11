@@ -78,7 +78,7 @@ public class BlockPennyPusher2 extends BlockContainer {
         		 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Yay! You won " + coinAmount + " coins!"));
         		 
         		 if(prizeChance.nextInt(100) <= PennyArcade.prizeChance + 1) {
-        			 int wonPrize = prize.nextInt(2);
+        			 int wonPrize = prize.nextInt(3);
         			 
         			 if(wonPrize == 0) { 
         				 par5EntityPlayer.dropItem(PennyArcade.goldCoin, PennyArcade.maxCoinAmount);
@@ -91,6 +91,10 @@ public class BlockPennyPusher2 extends BlockContainer {
         			 if(wonPrize == 2) { 
         				 par5EntityPlayer.dropItem(Items.emerald, 1);
         				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Bonus Prize! You get an emerald!")); 
+        			 }
+        			 if(wonPrize == 3) { 
+        				 par5EntityPlayer.dropItem(PennyArcade.emeraldToken, 1);
+        				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Bonus Prize! You get an emerald token!")); 
         			 }
         		 }
         	 }

@@ -28,7 +28,7 @@ public class RenderPennyPusher2 extends TileEntitySpecialRenderer {
     private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {
             int meta = world.getBlockMetadata(x, y, z);
             GL11.glPushMatrix();
-            GL11.glRotatef(meta * (90), 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(meta * -90, 0.0F, 0.0F, 1.0F);
             GL11.glPopMatrix();
     }
     
@@ -49,7 +49,7 @@ public class RenderPennyPusher2 extends TileEntitySpecialRenderer {
             GL11.glPushMatrix();
             TileEntityPennyPusher2 myTile = (TileEntityPennyPusher2) te;
             int direction = myTile.direction;
-            GL11.glRotatef(direction * 90, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(direction * -90, 0.0F, 1.0F, 0.0F);
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
     //A reference to your Model file. Again, very important.
             this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
