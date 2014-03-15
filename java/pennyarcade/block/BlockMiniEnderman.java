@@ -66,7 +66,7 @@ public class BlockMiniEnderman extends BlockContainer {
 			float par8, float par9) {
 
 		Random rand = new Random();
-		par1World.playSoundAtEntity(par5EntityPlayer, "mob.enderman.say", 1.0F,
+		par1World.playSoundAtEntity(par5EntityPlayer, "mob.endermen.idle", 1.0F,
 				(rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
 		return true;
 	}
