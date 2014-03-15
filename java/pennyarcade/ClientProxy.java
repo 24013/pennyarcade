@@ -2,26 +2,29 @@ package pennyarcade;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import pennyarcade.block.render.ItemRenderer;
 import pennyarcade.block.render.RenderClawMachine;
 import pennyarcade.block.render.RenderEmeraldPusher;
 import pennyarcade.block.render.RenderMiniCreeper;
 import pennyarcade.block.render.RenderMiniEnderman;
+import pennyarcade.block.render.RenderMiniHerobrine;
 import pennyarcade.block.render.RenderMiniPig;
 import pennyarcade.block.render.RenderPennyPusher1;
 import pennyarcade.block.render.RenderPennyPusher2;
 import pennyarcade.block.render.RenderRubixCube;
-import pennyarcade.block.render.item.ItemRenderer;
-import pennyarcade.block.render.item.ItemRendererMiniCreeper;
-import pennyarcade.block.render.item.ItemRendererMiniEnderman;
-import pennyarcade.block.render.item.ItemRendererMiniPig;
-import pennyarcade.block.render.item.ItemRendererPennyPusher1;
-import pennyarcade.block.render.item.ItemRendererPennyPusher2;
-import pennyarcade.block.render.item.ItemRendererRubixCube;
 import pennyarcade.block.render.model.ModelClawMachine;
+import pennyarcade.block.render.model.ModelMiniCreeper;
+import pennyarcade.block.render.model.ModelMiniEnderman;
+import pennyarcade.block.render.model.ModelMiniPig;
+import pennyarcade.block.render.model.ModelMiniPlayer;
+import pennyarcade.block.render.model.ModelPennyPusher1;
+import pennyarcade.block.render.model.ModelPennyPusher2;
+import pennyarcade.block.render.model.ModelRubixCube;
 import pennyarcade.block.tileentity.TileEntityClawMachine;
 import pennyarcade.block.tileentity.TileEntityEmeraldPusher;
 import pennyarcade.block.tileentity.TileEntityMiniCreeper;
 import pennyarcade.block.tileentity.TileEntityMiniEnderman;
+import pennyarcade.block.tileentity.TileEntityMiniHerobrine;
 import pennyarcade.block.tileentity.TileEntityMiniPig;
 import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
@@ -32,17 +35,19 @@ public class ClientProxy extends CommonProxy {
 
 	public void registerRenderers() {
 
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.pennyPusher1), new ItemRendererPennyPusher1(new RenderPennyPusher1(), new TileEntityPennyPusher1()));
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.pennyPusher2), new ItemRendererPennyPusher2(new RenderPennyPusher2(), new TileEntityPennyPusher2()));
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.pennyPusher3), new ItemRendererPennyPusher1(new RenderEmeraldPusher(), new TileEntityEmeraldPusher()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.pennyPusher1), new ItemRenderer(new RenderPennyPusher1(), new TileEntityPennyPusher1(), new ModelPennyPusher1()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.pennyPusher2), new ItemRenderer(new RenderPennyPusher2(), new TileEntityPennyPusher2(), new ModelPennyPusher2()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.pennyPusher3), new ItemRenderer(new RenderEmeraldPusher(), new TileEntityEmeraldPusher(), new ModelPennyPusher1()));
 		
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.clawMachine), new ItemRenderer(new RenderClawMachine(), new TileEntityClawMachine(), new ModelClawMachine()));
 
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniCreeper), new ItemRendererMiniCreeper(new RenderMiniCreeper(), new TileEntityMiniCreeper()));
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniPig), new ItemRendererMiniPig(new RenderMiniPig(), new TileEntityMiniPig()));
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniEnderman), new ItemRendererMiniEnderman(new RenderMiniEnderman(), new TileEntityMiniEnderman()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniCreeper), new ItemRenderer(new RenderMiniCreeper(), new TileEntityMiniCreeper(), new ModelMiniCreeper()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniPig), new ItemRenderer(new RenderMiniPig(), new TileEntityMiniPig(), new ModelMiniPig()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniEnderman), new ItemRenderer(new RenderMiniEnderman(), new TileEntityMiniEnderman(), new ModelMiniEnderman()));
 
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.rubixCube), new ItemRendererRubixCube(new RenderRubixCube(), new TileEntityRubixCube()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.rubixCube), new ItemRenderer(new RenderRubixCube(), new TileEntityRubixCube(), new ModelRubixCube()));
+		
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniHerobrine), new ItemRenderer(new RenderMiniHerobrine(), new TileEntityMiniHerobrine(), new ModelMiniPlayer()));
 		/////////
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPennyPusher1.class, new RenderPennyPusher1());
@@ -56,5 +61,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniEnderman.class, new RenderMiniEnderman());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRubixCube.class, new RenderRubixCube());
+		
+		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniHerobrine.class, new RenderMiniHerobrine());
 	}
 }
