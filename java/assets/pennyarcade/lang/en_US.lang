@@ -4,6 +4,8 @@ tile.pennyPusher1.name=Penny Pusher
 tile.pennyPusher2.name=Penny Pusher
 tile.pennyPusher3.name=Emerald Pusher
 
+tile.clawMachine.name=Claw Machine
+
 tile.miniCreeper.name=Creeper Toy
 tile.miniPig.name=Pig Toy
 tile.miniEnderman.name=Enderman Toy

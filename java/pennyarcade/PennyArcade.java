@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
+import pennyarcade.block.BlockClawMachine;
 import pennyarcade.block.BlockEmeraldPusher;
 import pennyarcade.block.BlockMiniCreeper;
 import pennyarcade.block.BlockMiniEnderman;
@@ -15,6 +16,7 @@ import pennyarcade.block.BlockMiniPig;
 import pennyarcade.block.BlockPennyPusher1;
 import pennyarcade.block.BlockPennyPusher2;
 import pennyarcade.block.BlockRubixCube;
+import pennyarcade.block.tileentity.TileEntityClawMachine;
 import pennyarcade.block.tileentity.TileEntityEmeraldPusher;
 import pennyarcade.block.tileentity.TileEntityMiniCreeper;
 import pennyarcade.block.tileentity.TileEntityMiniEnderman;
@@ -47,6 +49,8 @@ public class PennyArcade {
 	public static int pennyPusher1ID;
 	public static int pennyPusher2ID;
 	public static int pennyPusher3ID;
+	
+	public static int clawMachineID;
 
 	public static int miniCreeperID;
 	public static int miniPigID;
@@ -62,6 +66,8 @@ public class PennyArcade {
 	public static Block pennyPusher1;
 	public static Block pennyPusher2;
 	public static Block pennyPusher3;
+	
+	public static Block clawMachine;
 
 	public static Block miniCreeper;
 	public static Block miniPig;
@@ -77,6 +83,8 @@ public class PennyArcade {
 	public static int coinChance;
 	public static int maxCoinAmount;
 	public static int prizeChance;
+	
+	public static int clawMachineChance;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -95,6 +103,7 @@ public class PennyArcade {
 		pennyPusher1ID = config.get(Configuration.CATEGORY_GENERAL, "PennyPusher1ID", 3000).getInt();
 		pennyPusher2ID = config.get(Configuration.CATEGORY_GENERAL, "PennyPusher2ID", 3001).getInt();
 		pennyPusher3ID = config.get(Configuration.CATEGORY_GENERAL, "PennyPusher3ID", 3002).getInt();
+		clawMachineID = config.get(Configuration.CATEGORY_GENERAL, "ClawMachineID", 3003).getInt();
 
 		miniCreeperID = config.get(Configuration.CATEGORY_GENERAL, "MiniCreeperID", 3050).getInt();
 		miniPigID = config.get(Configuration.CATEGORY_GENERAL, "MiniPigID", 3051).getInt();
@@ -103,18 +112,20 @@ public class PennyArcade {
 		rubixCubeID = config.get(Configuration.CATEGORY_GENERAL, "RubixCubeID", 3070).getInt();
 
 		goldCoinID = config.get(Configuration.CATEGORY_GENERAL, "GoldCoinID", 10000).getInt();
-		emeraldTokenID = config.get(Configuration.CATEGORY_GENERAL, "EmeraldTokenID", 10001).getInt();
-				
+		emeraldTokenID = config.get(Configuration.CATEGORY_GENERAL, "EmeraldTokenID", 10001).getInt();		
 
 		coinChance = config.get(Configuration.CATEGORY_GENERAL, "coinChance", 30, "The chance out of 100 that you win coins. Default of 30").getInt();
 		maxCoinAmount = config.get(Configuration.CATEGORY_GENERAL, "maxCoinAmount", 4, "The maximum amount of coins that you win coins. Default of 4").getInt();
 		prizeChance = config.get(Configuration.CATEGORY_GENERAL, "prizeChance", 5, "The chance out of 100 that you win a prize. Default of 5").getInt();
+		clawMachineChance = config.get(Configuration.CATEGORY_GENERAL, "clawMachineChance", 1, "The chance out of 100 that you win a prize from a claw machine. Default of 1").getInt();
 
 		config.save();
 		
 		pennyPusher1 = new BlockPennyPusher1(pennyPusher1ID).setBlockName("pennyPusher1").setBlockTextureName(PennyArcade.MODID + "textures/blocks/model/pennyarcade/PennyPusher1").setCreativeTab(pennyArcadeTab);
 		pennyPusher2 = new BlockPennyPusher2(pennyPusher2ID).setBlockName("pennyPusher2").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/PennyPusher2").setCreativeTab(pennyArcadeTab);
 		pennyPusher3 = new BlockEmeraldPusher(pennyPusher3ID).setBlockName("pennyPusher3").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/PennyPusher3").setCreativeTab(pennyArcadeTab);
+		
+		clawMachine = new BlockClawMachine(clawMachineID).setBlockName("clawMachine").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/ClawMachine").setCreativeTab(pennyArcadeTab);
 
 		miniCreeper = new BlockMiniCreeper(miniCreeperID).setBlockName("miniCreeper").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/MiniCreeper").setCreativeTab(pennyArcadeTab);
 		miniPig = new BlockMiniPig(miniPigID).setBlockName("miniPig").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/MiniPig").setCreativeTab(pennyArcadeTab);
@@ -144,6 +155,8 @@ public class PennyArcade {
 		GameRegistry.addRecipe(new ItemStack(pennyPusher1, 1), new Object[] { "III", "IPI", "IEI", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.emerald });
 		GameRegistry.addRecipe(new ItemStack(pennyPusher2, 1), new Object[] { "IPI", "IGI", "III", Character.valueOf('I'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('G'), Items.gold_ingot });
 		GameRegistry.addRecipe(new ItemStack(pennyPusher3, 1), new Object[] { "IEI", "EPE", "IEI", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.emerald });
+		
+		GameRegistry.addRecipe(new ItemStack(clawMachine, 1), new Object[] { "IEI", "PPP", "IOI", Character.valueOf('I'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.glowstone_dust, Character.valueOf('O'), Blocks.obsidian });
 	}
 
 
@@ -152,6 +165,8 @@ public class PennyArcade {
 		GameRegistry.registerTileEntity(TileEntityPennyPusher1.class, "pennyPusher1");
 		GameRegistry.registerTileEntity(TileEntityPennyPusher2.class, "pennyPusher2");
 		GameRegistry.registerTileEntity(TileEntityEmeraldPusher.class, "pennyPusher3");
+		
+		GameRegistry.registerTileEntity(TileEntityClawMachine.class, "clawMachine");
 
 		GameRegistry.registerTileEntity(TileEntityMiniCreeper.class, "miniCreeper");
 		GameRegistry.registerTileEntity(TileEntityMiniPig.class, "miniPig");
@@ -167,6 +182,8 @@ public class PennyArcade {
 		GameRegistry.registerBlock(pennyPusher1, "pennyPusher1");
 		GameRegistry.registerBlock(pennyPusher2, "pennyPusher2");
 		GameRegistry.registerBlock(pennyPusher3, "pennyPusher3");
+		
+		GameRegistry.registerBlock(clawMachine, "clawMachine");
 
 		GameRegistry.registerBlock(miniCreeper, "miniCreeper");
 		GameRegistry.registerBlock(miniPig, "miniPig");
