@@ -69,7 +69,8 @@ public class BlockClawMachine extends BlockContainer {
     	 }
     	 else if(!par1World.isRemote && itemstack.getItem() == PennyArcade.goldCoin) {
     		 
-    		 if(!par5EntityPlayer.capabilities.isCreativeMode) itemstack.stackSize = itemstack.stackSize - 1;;
+    		 if(!par5EntityPlayer.capabilities.isCreativeMode) itemstack.stackSize = itemstack.stackSize - 1;
+    		 
     		 if((prizeChance.nextInt(99) + 1) == PennyArcade.clawMachineChance ) {
     			 if(prize.nextInt(2) == 0) {
     				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniCreeper), 1);
@@ -83,6 +84,9 @@ public class BlockClawMachine extends BlockContainer {
     				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniEnderman), 1);
     				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won an Enderman Toy!")); 
     			 }
+    		 }
+    		 else {
+    			 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Unlucky! You got nothing!"));  
     		 }
     		 
     		 return true;

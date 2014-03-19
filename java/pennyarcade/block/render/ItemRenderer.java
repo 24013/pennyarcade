@@ -31,7 +31,7 @@ public class ItemRenderer implements IItemRenderer {
 
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {	
-		renderer.renderTileEntityAt(entity, 0.0D, 0.0D, 0.0D, 0.0F);
+		renderer.renderTileEntityAt(entity, 0.0D, 0.0D, 0.0D, 1.0F);
 	}
 
 }
