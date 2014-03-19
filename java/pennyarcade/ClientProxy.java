@@ -7,8 +7,8 @@ import pennyarcade.block.render.RenderClawMachine;
 import pennyarcade.block.render.RenderEmeraldPusher;
 import pennyarcade.block.render.RenderMiniCreeper;
 import pennyarcade.block.render.RenderMiniEnderman;
-import pennyarcade.block.render.RenderMiniHerobrine;
 import pennyarcade.block.render.RenderMiniPig;
+import pennyarcade.block.render.RenderNyanCat;
 import pennyarcade.block.render.RenderPennyPusher1;
 import pennyarcade.block.render.RenderPennyPusher2;
 import pennyarcade.block.render.RenderRubixCube;
@@ -16,7 +16,7 @@ import pennyarcade.block.render.model.ModelClawMachine;
 import pennyarcade.block.render.model.ModelMiniCreeper;
 import pennyarcade.block.render.model.ModelMiniEnderman;
 import pennyarcade.block.render.model.ModelMiniPig;
-import pennyarcade.block.render.model.ModelMiniPlayer;
+import pennyarcade.block.render.model.ModelNyanCat;
 import pennyarcade.block.render.model.ModelPennyPusher1;
 import pennyarcade.block.render.model.ModelPennyPusher2;
 import pennyarcade.block.render.model.ModelRubixCube;
@@ -24,8 +24,8 @@ import pennyarcade.block.tileentity.TileEntityClawMachine;
 import pennyarcade.block.tileentity.TileEntityEmeraldPusher;
 import pennyarcade.block.tileentity.TileEntityMiniCreeper;
 import pennyarcade.block.tileentity.TileEntityMiniEnderman;
-import pennyarcade.block.tileentity.TileEntityMiniHerobrine;
 import pennyarcade.block.tileentity.TileEntityMiniPig;
+import pennyarcade.block.tileentity.TileEntityNyanCat;
 import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
 import pennyarcade.block.tileentity.TileEntityRubixCube;
@@ -46,8 +46,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniEnderman), new ItemRenderer(new RenderMiniEnderman(), new TileEntityMiniEnderman(), new ModelMiniEnderman()));
 
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.rubixCube), new ItemRenderer(new RenderRubixCube(), new TileEntityRubixCube(), new ModelRubixCube()));
-		
-		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.miniHerobrine), new ItemRenderer(new RenderMiniHerobrine(), new TileEntityMiniHerobrine(), new ModelMiniPlayer()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(PennyArcade.nyanCat), new ItemRenderer(new RenderNyanCat(), new TileEntityNyanCat(), new ModelNyanCat()));
 		/////////
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPennyPusher1.class, new RenderPennyPusher1());
@@ -61,7 +60,6 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniEnderman.class, new RenderMiniEnderman());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRubixCube.class, new RenderRubixCube());
-		
-		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniHerobrine.class, new RenderMiniHerobrine());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNyanCat.class, new RenderNyanCat());
 	}
 }

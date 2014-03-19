@@ -12,8 +12,8 @@ import pennyarcade.block.BlockClawMachine;
 import pennyarcade.block.BlockEmeraldPusher;
 import pennyarcade.block.BlockMiniCreeper;
 import pennyarcade.block.BlockMiniEnderman;
-import pennyarcade.block.BlockMiniHerobrine;
 import pennyarcade.block.BlockMiniPig;
+import pennyarcade.block.BlockNyanCat;
 import pennyarcade.block.BlockPennyPusher1;
 import pennyarcade.block.BlockPennyPusher2;
 import pennyarcade.block.BlockRubixCube;
@@ -21,8 +21,8 @@ import pennyarcade.block.tileentity.TileEntityClawMachine;
 import pennyarcade.block.tileentity.TileEntityEmeraldPusher;
 import pennyarcade.block.tileentity.TileEntityMiniCreeper;
 import pennyarcade.block.tileentity.TileEntityMiniEnderman;
-import pennyarcade.block.tileentity.TileEntityMiniHerobrine;
 import pennyarcade.block.tileentity.TileEntityMiniPig;
+import pennyarcade.block.tileentity.TileEntityNyanCat;
 import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
 import pennyarcade.block.tileentity.TileEntityRubixCube;
@@ -59,8 +59,7 @@ public class PennyArcade {
 	public static int miniEndermanID;
 	
 	public static int rubixCubeID;
-	
-	//public static int miniHerobrineID;
+	public static int nyanCatID;
 	
 	public static int goldCoinID;
 	public static int emeraldTokenID;
@@ -78,8 +77,7 @@ public class PennyArcade {
 	public static Block miniEnderman;
 	
 	public static Block rubixCube;
-	
-	//public static Block miniHerobrine;
+	public static Block nyanCat;
 
 	public static Item goldCoin;
 	public static Item emeraldToken;
@@ -116,8 +114,7 @@ public class PennyArcade {
 		miniEndermanID = config.get(Configuration.CATEGORY_GENERAL, "MiniEndermanID", 3052).getInt();
 		
 		rubixCubeID = config.get(Configuration.CATEGORY_GENERAL, "RubixCubeID", 3070).getInt();
-		
-		//miniHerobrineID = config.get(Configuration.CATEGORY_GENERAL, "MiniHerobrineID", 4000).getInt();
+		nyanCatID = config.get(Configuration.CATEGORY_GENERAL, "NyanCatID", 3071).getInt();
 
 		goldCoinID = config.get(Configuration.CATEGORY_GENERAL, "GoldCoinID", 10000).getInt();
 		emeraldTokenID = config.get(Configuration.CATEGORY_GENERAL, "EmeraldTokenID", 10001).getInt();		
@@ -125,7 +122,7 @@ public class PennyArcade {
 		coinChance = config.get(Configuration.CATEGORY_GENERAL, "coinChance", 30, "The chance out of 100 that you win coins. Default of 30").getInt();
 		maxCoinAmount = config.get(Configuration.CATEGORY_GENERAL, "maxCoinAmount", 4, "The maximum amount of coins that you win coins. Default of 4").getInt();
 		prizeChance = config.get(Configuration.CATEGORY_GENERAL, "prizeChance", 5, "The chance out of 100 that you win a prize. Default of 5").getInt();
-		clawMachineChance = config.get(Configuration.CATEGORY_GENERAL, "clawMachineChance", 1, "The chance out of 100 that you win a prize from a claw machine. Default of 1").getInt();
+		clawMachineChance = config.get(Configuration.CATEGORY_GENERAL, "clawMachineChance", 5, "The chance out of 100 that you win a prize from a claw machine. Default of 5").getInt();
 
 		config.save();
 		
@@ -140,8 +137,7 @@ public class PennyArcade {
 		miniEnderman = new BlockMiniEnderman(miniEndermanID).setBlockName("miniEnderman").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/MiniEnderman").setCreativeTab(pennyArcadeTab);
 		
 		rubixCube = new BlockRubixCube(rubixCubeID).setBlockName("rubixCube").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/rubix/RubixCube1").setCreativeTab(pennyArcadeTab);
-		
-		//miniHerobrine = new BlockMiniHerobrine(miniHerobrineID).setBlockName("miniHerobrine").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/players/Herobrine").setCreativeTab(pennyArcadeTab);
+		nyanCat = new BlockNyanCat(nyanCatID).setBlockName("nyanCat").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/NyanCat").setCreativeTab(pennyArcadeTab);
 		
 		goldCoin = new Item().setUnlocalizedName("goldCoin").setTextureName(PennyArcade.MODID + ":goldCoin").setCreativeTab(pennyArcadeTab);
 		emeraldToken = new Item().setUnlocalizedName("emeraldToken").setTextureName(PennyArcade.MODID + ":emeraldToken").setCreativeTab(pennyArcadeTab);
@@ -183,8 +179,7 @@ public class PennyArcade {
 		GameRegistry.registerTileEntity(TileEntityMiniEnderman.class, "miniEnderman");
 		
 		GameRegistry.registerTileEntity(TileEntityRubixCube.class, "rubixCube");
-		
-		GameRegistry.registerTileEntity(TileEntityMiniHerobrine.class, "miniHerobrine");
+		GameRegistry.registerTileEntity(TileEntityNyanCat.class, "nyanCat");
 		 
 		registerVillagers();
 	}
@@ -202,8 +197,7 @@ public class PennyArcade {
 		GameRegistry.registerBlock(miniEnderman, "miniEnderman");
 	
 		GameRegistry.registerBlock(rubixCube, "rubixCube");
-		
-		//GameRegistry.registerBlock(miniHerobrine, "miniHerobrine");
+		GameRegistry.registerBlock(nyanCat, "nyanCat");
 		
 		GameRegistry.registerItem(goldCoin, "goldCoin");
 		GameRegistry.registerItem(emeraldToken, "emeraldToken");
