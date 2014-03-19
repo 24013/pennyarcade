@@ -15,6 +15,12 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) {
 		
+		/** Things to trade for coins/tokens */
+		
+		recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 1), null, new ItemStack(PennyArcade.goldCoin, 20)));
+		recipeList.add(new MerchantRecipe(new ItemStack(Items.diamond, 1), null, new ItemStack(PennyArcade.goldCoin, 20)));
+		
+		/** Things to use coins/tokens on */
 		recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.goldCoin, 25), null, new ItemStack(Items.emerald, 1)));
 		recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.goldCoin, 25), null, new ItemStack(Items.diamond, 1)));
 		
@@ -25,8 +31,8 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
 		recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.emeraldToken, 3), null, new ItemStack(PennyArcade.miniEnderman, 1)));
 		
 		recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.emeraldToken, 2), null, new ItemStack(PennyArcade.rubixCube, 1)));
+		recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.emeraldToken, 3), null, new ItemStack(PennyArcade.nyanCat, 1)));
 		
-		//recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.emeraldToken, 3), null, new ItemStack(PennyArcade.miniHerobrine, 1)));
 	}
 
 }
