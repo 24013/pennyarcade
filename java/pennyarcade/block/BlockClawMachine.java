@@ -34,13 +34,22 @@ public class BlockClawMachine extends BlockContainer {
 	
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+		
 		if (entity == null) {
 		return;
 		}
 
 		TileEntityClawMachine tile = (TileEntityClawMachine) world.getTileEntity(x, y, z);
-		tile.direction = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int l = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		
+		world.setBlockMetadataWithNotify(x, y, z, l, 2);
+		
+		if(!this.canBlockStay(world, x, y, z)) {
+			
+			world.setBlock(x, y, z, this);
+			
 		}
+	}  
 	
 	 @Override
      public int getRenderType() {
@@ -97,7 +106,7 @@ public class BlockClawMachine extends BlockContainer {
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":clawMachine");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
  }
 
 	@Override

@@ -37,7 +37,15 @@ public class BlockNyanCat extends BlockContainer {
 		}
 
 		TileEntityNyanCat tile = (TileEntityNyanCat) world.getTileEntity(x, y, z);
-		tile.direction = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int l = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		
+		world.setBlockMetadataWithNotify(x, y, z, l, 2);
+		
+		if(!this.canBlockStay(world, x, y, z)) {
+			
+			world.setBlock(x, y, z, this);
+			
+			}
 		}
 	
 	 @Override
@@ -61,12 +69,12 @@ public class BlockNyanCat extends BlockContainer {
      public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
      {
     	 Random rand = new Random();
-    	 SoundHandler.onEntityPlay("nyan", par5EntityPlayer.worldObj, par5EntityPlayer, 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+    	 par1World.playSoundAtEntity(par5EntityPlayer, "mob.cat.meow", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
     	 return true;
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":nyanCat");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
  }
 
 }

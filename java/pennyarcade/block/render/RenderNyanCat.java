@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import pennyarcade.PennyArcade;
 import pennyarcade.block.render.model.ModelNyanCat;
 import pennyarcade.block.tileentity.TileEntityNyanCat;
+import pennyarcade.block.tileentity.TileEntityNyanCat;
 
 public class RenderNyanCat extends TileEntitySpecialRenderer {
 
@@ -35,21 +36,18 @@ public class RenderNyanCat extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z,
 			float scale) {
+		TileEntityNyanCat tile = (TileEntityNyanCat) te;
 		
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+    	int direction = te.getWorldObj().getBlockMetadata(te.xCoord, te.yCoord, te.zCoord);
 		
-		textures = (new ResourceLocation(PennyArcade.MODID
-				+ ":textures/blocks/model/toys/NyanCat.png"));
+    	GL11.glPushMatrix();
+	    GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+		ResourceLocation textures = (new ResourceLocation(PennyArcade.MODID + ":textures/blocks/model/toys/NyanCat.png")); 
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
-
 		GL11.glPushMatrix();
-		TileEntityNyanCat myTile = (TileEntityNyanCat) te;
-		int direction = myTile.direction;
-		GL11.glRotatef(direction * -90, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-		
-		this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(direction * 90.0F, 0.0F, 1.0F, 0.0F);
+		this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}

@@ -31,22 +31,19 @@ public class RenderClawMachine extends TileEntitySpecialRenderer {
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z,
-			float scale) {
-		GL11.glPushMatrix();
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
+		TileEntityClawMachine tile = (TileEntityClawMachine) te;
 		
-		GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
-		ResourceLocation textures = new ResourceLocation(PennyArcade.MODID
-				+ ":textures/blocks/model/pennyarcade/ClawMachine.png");
+    	int direction = te.getWorldObj().getBlockMetadata(te.xCoord, te.yCoord, te.zCoord);
+    	
+    	GL11.glPushMatrix();
+	    GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+		ResourceLocation textures = (new ResourceLocation(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/ClawMachine.png")); 
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
-
 		GL11.glPushMatrix();
-		TileEntityClawMachine myTile = (TileEntityClawMachine) te;
-		int direction = myTile.direction;
-		
-		GL11.glRotatef(direction * -90, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-		this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(direction * 90.0F, 0.0F, 1.0F, 0.0F);
+		this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}

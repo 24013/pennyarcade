@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import pennyarcade.PennyArcade;
 import pennyarcade.block.render.model.ModelMiniPig;
 import pennyarcade.block.tileentity.TileEntityMiniPig;
+import pennyarcade.block.tileentity.TileEntityMiniPig;
 
 public class RenderMiniPig extends TileEntitySpecialRenderer {
 
@@ -34,23 +35,18 @@ public class RenderMiniPig extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z,
 			float scale) {
+		TileEntityMiniPig tile = (TileEntityMiniPig) te;
 		
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
-		ResourceLocation textures = (new ResourceLocation(PennyArcade.MODID
-				+ ":textures/blocks/model/toys/MiniPig.png"));
+    	int direction = te.getWorldObj().getBlockMetadata(te.xCoord, te.yCoord, te.zCoord);
+		
+    	GL11.glPushMatrix();
+	    GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+		ResourceLocation textures = (new ResourceLocation(PennyArcade.MODID + ":textures/blocks/model/toys/MiniPig.png"));
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
-		
 		GL11.glPushMatrix();
-		TileEntityMiniPig myTile = (TileEntityMiniPig) te;
-		
-		int direction = myTile.direction;
-		GL11.glRotatef(direction * -90, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-		// A reference to your Model file. Again, very important.
-		this.model
-				.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-		// Tell it to stop rendering for both the PushMatrix's
+		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(direction * 90.0F, 0.0F, 1.0F, 0.0F);
+		this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}

@@ -24,7 +24,6 @@ public class BlockRubixCube extends BlockContainer {
 	public BlockRubixCube(int par1) {
 		super(Material.ground);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-		System.out.println("Rubix Cube Block Initialized");
 	}
 
 	@Override
@@ -39,10 +38,17 @@ public class BlockRubixCube extends BlockContainer {
 			return;
 		}
 
-		TileEntityRubixCube tile = (TileEntityRubixCube) world
-				.getTileEntity(x, y, z);
-		tile.direction = MathHelper
-				.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		TileEntityRubixCube tile = (TileEntityRubixCube) world.getTileEntity(x, y, z);
+		
+		int l = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		
+		world.setBlockMetadataWithNotify(x, y, z, l, 2);
+		
+		if(!this.canBlockStay(world, x, y, z)) {
+			
+			world.setBlock(x, y, z, this);
+			
+		}
 	}
 
 	@Override
@@ -59,11 +65,6 @@ public class BlockRubixCube extends BlockContainer {
 		return false;
 	}
 
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4,
-			EntityLiving par5EntityLiving, ItemStack par6ItemStack) {
-
-	}
-
 	public boolean onBlockActivated(World par1World, int par2, int par3,
 			int par4, EntityPlayer par5EntityPlayer, int par6, float par7,
 			float par8, float par9) {
@@ -71,7 +72,7 @@ public class BlockRubixCube extends BlockContainer {
 	}
 
 	public void registerBlockIcons(IIconRegister icon) {
-		this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":rubixCube");
+		this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
 	}
 
 }

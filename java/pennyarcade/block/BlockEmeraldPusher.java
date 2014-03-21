@@ -41,7 +41,15 @@ public class BlockEmeraldPusher extends BlockContainer {
 		}
 
 		TileEntityEmeraldPusher tile = (TileEntityEmeraldPusher) world.getTileEntity(x, y, z);
-		tile.direction = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int l = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		
+		world.setBlockMetadataWithNotify(x, y, z, l, 2);
+		
+		if(!this.canBlockStay(world, x, y, z)) {
+			
+			world.setBlock(x, y, z, this);
+			
+		}
 		}
 	
 	 @Override

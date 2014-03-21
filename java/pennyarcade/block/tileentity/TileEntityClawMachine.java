@@ -4,6 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityClawMachine extends TileEntity {
+	
 	public int direction;
 	public NBTTagCompound par1NBTTagCompound;
         

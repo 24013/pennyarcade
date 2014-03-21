@@ -17,6 +17,7 @@ import org.lwjgl.opengl.GL11;
 import pennyarcade.PennyArcade;
 import pennyarcade.block.render.model.ModelRubixCube;
 import pennyarcade.block.tileentity.TileEntityRubixCube;
+import pennyarcade.block.tileentity.TileEntityRubixCube;
 
 public class RenderRubixCube extends TileEntitySpecialRenderer {
 
@@ -37,23 +38,18 @@ public class RenderRubixCube extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z,
 			float scale) {
-		
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
-		
-		//Random rand = new Random();
-		final int i = /*(rand.nextInt(4)) + */1;
-		textures = (new ResourceLocation(PennyArcade.MODID
-				+ ":textures/blocks/model/toys/rubix/RubixCube" + i + ".png"));
-		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
+		TileEntityRubixCube tile = (TileEntityRubixCube) te;
 
-		GL11.glPushMatrix();
-		TileEntityRubixCube myTile = (TileEntityRubixCube) te;
-		int direction = myTile.direction;
-		GL11.glRotatef(direction * -90, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+    	int direction = te.getWorldObj().getBlockMetadata(te.xCoord, te.yCoord, te.zCoord);
 		
-		this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+    	GL11.glPushMatrix();
+	    GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+		ResourceLocation textures = (new ResourceLocation(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/rubix/RubixCube1.png")); 
+		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
+		GL11.glPushMatrix();
+		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(direction * 90.0F, 0.0F, 1.0F, 0.0F);
+		this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}
@@ -69,14 +65,5 @@ public class RenderRubixCube extends TileEntitySpecialRenderer {
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit,
 				(float) modulousModifier, divModifier);
 	}
-	
-	/*
-	public void changeTexture(int var1) {
-		ResourceLocation tex = (new ResourceLocation(PennyArcade.MODID
-				+ ":textures/blocks/model/toys/rubix/RubixCube" + var1 + ".png"));
-		
-		this.bindTexture(tex);
-	}
-	*/
 
 }
