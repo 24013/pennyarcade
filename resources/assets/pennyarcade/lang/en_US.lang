@@ -1,4 +1,24 @@
+
 itemGroup.pennyArcadeTab=Penny Arcade Mod
+
+
+
+achievement.goldcoin=Lucky Penny
+achievement.goldcoin.desc=Craft some Gold Coins.
+
+achievement.pennypusher=Moneymaker
+achievement.pennypusher.desc=Make a Penny Pusher to waste your coins on.
+
+achievement.emeraldtoken=Priceless
+achievement.emeraldtoken.desc=Obtain an Emerald Token.
+
+achievement.emeraldpusher=Posh Gambling
+achievement.emeraldpusher.desc=Waste your emerald tokens by making an emerald pusher.
+
+achievement.nyancat=NYAN NYAN NYAN!!!
+achievement.nyancat.desc=Trade your emerald tokens for Nyan Cat.
+
+
 
 tile.pennyPusher1.name=Penny Pusher
 tile.pennyPusher2.name=Penny Pusher
@@ -12,6 +32,9 @@ tile.miniEnderman.name=Enderman Toy
 
 tile.rubixCube.name=Rubix Cube
 tile.nyanCat.name=Nyan Cat Toy
+
+
+
 
 item.goldCoin.name=Gold Coin
 item.emeraldToken.name=Emerald Token

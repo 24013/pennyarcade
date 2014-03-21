@@ -2,11 +2,15 @@ package pennyarcade;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.AchievementList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.config.Configuration;
 import pennyarcade.block.BlockClawMachine;
 import pennyarcade.block.BlockEmeraldPusher;
@@ -27,19 +31,23 @@ import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
 import pennyarcade.block.tileentity.TileEntityRubixCube;
 import pennyarcade.entity.villager.VillagerTradeHandler;
+import pennyarcade.event.AchievementManager;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 
-@Mod(modid = PennyArcade.MODID, name = "Penny Arcade Mod", version = "Pre-Alpha 0.0.6")
+@Mod(modid = PennyArcade.MODID, name = "Penny Arcade Mod", version = PennyArcade.VERSION)
 public class PennyArcade {
 
 	public static final String MODID = "pennyarcade";
+	public static final String VERSION = "Alpha Testing 1.1";
 
 	@Instance(MODID)
 	public static PennyArcade instance;
@@ -93,6 +101,12 @@ public class PennyArcade {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public static CreativeTabs pennyArcadeTab;
+	
+	public static Achievement achievementGoldCoins;
+	public static Achievement achievementPennyPusher;
+	public static Achievement achievementEmeraldToken;
+	public static Achievement achievementEmeraldPusher;
+	public static Achievement achievementNyanCat;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -126,21 +140,33 @@ public class PennyArcade {
 
 		config.save();
 		
-		pennyPusher1 = new BlockPennyPusher1(pennyPusher1ID).setBlockName("pennyPusher1").setBlockTextureName(PennyArcade.MODID + "textures/blocks/model/pennyarcade/PennyPusher1").setCreativeTab(pennyArcadeTab);
-		pennyPusher2 = new BlockPennyPusher2(pennyPusher2ID).setBlockName("pennyPusher2").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/PennyPusher2").setCreativeTab(pennyArcadeTab);
-		pennyPusher3 = new BlockEmeraldPusher(pennyPusher3ID).setBlockName("pennyPusher3").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/PennyPusher3").setCreativeTab(pennyArcadeTab);
+		pennyPusher1 = new BlockPennyPusher1(pennyPusher1ID).setBlockName("pennyPusher1").setCreativeTab(pennyArcadeTab);
+		pennyPusher2 = new BlockPennyPusher2(pennyPusher2ID).setBlockName("pennyPusher2").setCreativeTab(pennyArcadeTab);
+		pennyPusher3 = new BlockEmeraldPusher(pennyPusher3ID).setBlockName("pennyPusher3").setCreativeTab(pennyArcadeTab);
 		
 		clawMachine = new BlockClawMachine(clawMachineID).setBlockName("clawMachine").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/ClawMachine").setCreativeTab(pennyArcadeTab);
 
-		miniCreeper = new BlockMiniCreeper(miniCreeperID).setBlockName("miniCreeper").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/MiniCreeper").setCreativeTab(pennyArcadeTab);
-		miniPig = new BlockMiniPig(miniPigID).setBlockName("miniPig").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/MiniPig").setCreativeTab(pennyArcadeTab);
-		miniEnderman = new BlockMiniEnderman(miniEndermanID).setBlockName("miniEnderman").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/MiniEnderman").setCreativeTab(pennyArcadeTab);
+		miniCreeper = new BlockMiniCreeper(miniCreeperID).setBlockName("miniCreeper").setCreativeTab(pennyArcadeTab);
+		miniPig = new BlockMiniPig(miniPigID).setBlockName("miniPig").setCreativeTab(pennyArcadeTab);
+		miniEnderman = new BlockMiniEnderman(miniEndermanID).setBlockName("miniEnderman").setCreativeTab(pennyArcadeTab);
 		
-		rubixCube = new BlockRubixCube(rubixCubeID).setBlockName("rubixCube").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/rubix/RubixCube1").setCreativeTab(pennyArcadeTab);
-		nyanCat = new BlockNyanCat(nyanCatID).setBlockName("nyanCat").setBlockTextureName(PennyArcade.MODID + ":textures/blocks/model/toys/NyanCat").setCreativeTab(pennyArcadeTab);
+		rubixCube = new BlockRubixCube(rubixCubeID).setBlockName("rubixCube").setCreativeTab(pennyArcadeTab);
+		nyanCat = new BlockNyanCat(nyanCatID).setBlockName("nyanCat").setCreativeTab(pennyArcadeTab);
 		
 		goldCoin = new Item().setUnlocalizedName("goldCoin").setTextureName(PennyArcade.MODID + ":goldCoin").setCreativeTab(pennyArcadeTab);
 		emeraldToken = new Item().setUnlocalizedName("emeraldToken").setTextureName(PennyArcade.MODID + ":emeraldToken").setCreativeTab(pennyArcadeTab);
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		achievementGoldCoins = new Achievement("achievement.goldcoin", "goldcoin", 0, 0, this.goldCoin, AchievementList.buildBetterPickaxe).registerStat();
+		achievementPennyPusher = new Achievement("achievement.pennypusher", "pennypusher", 2, 1, Items.gold_ingot, this.achievementGoldCoins).registerStat();
+		achievementEmeraldToken = new Achievement("achievement.emeraldtoken", "emeraldtoken", 4, 1, this.emeraldToken, this.achievementPennyPusher).registerStat();
+		achievementEmeraldPusher = new Achievement("achievement.emeraldpusher", "emeraldpusher", 6, 2, Items.emerald, this.achievementEmeraldToken).registerStat();
+		achievementNyanCat = new Achievement("achievement.nyancat", "nyancat", 4, -1, Items.cookie, this.achievementEmeraldToken).registerStat();
+		
+		AchievementPage.registerAchievementPage(new AchievementPage("Penny Arcade Mod", new Achievement[] { this.achievementGoldCoins, this.achievementPennyPusher, this.achievementEmeraldToken, this.achievementEmeraldPusher, this.achievementNyanCat }));
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		registerObjects();
 		addCraftingRecipes();
@@ -152,6 +178,8 @@ public class PennyArcade {
 		proxyArcade.registerRenderers();
 
 		registerEntities();
+		
+		FMLCommonHandler.instance().bus().register(new AchievementManager());
 	}
 
 	public void addCraftingRecipes() {
