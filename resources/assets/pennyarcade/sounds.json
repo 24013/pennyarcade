@@ -1,3 +1,5 @@
 {
-    "nyan": {"category": "master","sounds": [{"name": "nyan","stream": false}]},
+    "toys.nyan": { "catagory": "toys", "sounds": [{ "name": "toys/nyan1", "stream": false}]},
+	"pennyarcade.coindrop": { "catagory": "pennyarcade", "sounds": [{"name": "pennyarcade/coindrop1", "stream": false}]},
+	"toys.stephano": { "catagory": "toys", "sounds": [{ "name": "toys/stephano", "stream": false}]}
 }
