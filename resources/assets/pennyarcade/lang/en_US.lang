@@ -9,6 +9,9 @@ achievement.goldcoin.desc=Craft some Gold Coins.
 achievement.pennypusher=Moneymaker
 achievement.pennypusher.desc=Make a Penny Pusher to waste your coins on.
 
+achievement.clawmachine=The Claw...
+achievement.clawmachine.desc=Build a Claw Machine.
+
 achievement.emeraldtoken=Priceless
 achievement.emeraldtoken.desc=Obtain an Emerald Token.
 
@@ -16,7 +19,10 @@ achievement.emeraldpusher=Posh Gambling
 achievement.emeraldpusher.desc=Waste your emerald tokens by making an emerald pusher.
 
 achievement.nyancat=NYAN NYAN NYAN!!!
-achievement.nyancat.desc=Trade your emerald tokens for Nyan Cat.
+achievement.nyancat.desc=Obtain a Nyan Cat Toy.
+
+achievement.stephano=Hello Pewdie...
+achievement.stephano.desc=Obtain Stephano.
 
 
 
@@ -30,8 +36,9 @@ tile.miniCreeper.name=Creeper Toy
 tile.miniPig.name=Pig Toy
 tile.miniEnderman.name=Enderman Toy
 
-tile.rubixCube.name=Rubix Cube
+tile.rubixCube.name=Shuffle Cube
 tile.nyanCat.name=Nyan Cat Toy
+tile.stephano.name=Stephano
 
 
 

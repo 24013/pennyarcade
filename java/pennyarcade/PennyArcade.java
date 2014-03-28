@@ -2,7 +2,6 @@ package pennyarcade;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -21,6 +20,7 @@ import pennyarcade.block.BlockNyanCat;
 import pennyarcade.block.BlockPennyPusher1;
 import pennyarcade.block.BlockPennyPusher2;
 import pennyarcade.block.BlockRubixCube;
+import pennyarcade.block.BlockStephano;
 import pennyarcade.block.tileentity.TileEntityClawMachine;
 import pennyarcade.block.tileentity.TileEntityEmeraldPusher;
 import pennyarcade.block.tileentity.TileEntityMiniCreeper;
@@ -30,6 +30,7 @@ import pennyarcade.block.tileentity.TileEntityNyanCat;
 import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
 import pennyarcade.block.tileentity.TileEntityRubixCube;
+import pennyarcade.block.tileentity.TileEntityStephano;
 import pennyarcade.entity.villager.VillagerTradeHandler;
 import pennyarcade.event.AchievementManager;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -38,7 +39,6 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
@@ -47,7 +47,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 public class PennyArcade {
 
 	public static final String MODID = "pennyarcade";
-	public static final String VERSION = "Alpha Testing 1.1";
+	public static final String VERSION = "Alpha Testing 1.2";
 
 	@Instance(MODID)
 	public static PennyArcade instance;
@@ -68,6 +68,7 @@ public class PennyArcade {
 	
 	public static int rubixCubeID;
 	public static int nyanCatID;
+	public static int stephanoID;
 	
 	public static int goldCoinID;
 	public static int emeraldTokenID;
@@ -86,6 +87,7 @@ public class PennyArcade {
 	
 	public static Block rubixCube;
 	public static Block nyanCat;
+	public static Block stephano;
 
 	public static Item goldCoin;
 	public static Item emeraldToken;
@@ -107,6 +109,8 @@ public class PennyArcade {
 	public static Achievement achievementEmeraldToken;
 	public static Achievement achievementEmeraldPusher;
 	public static Achievement achievementNyanCat;
+	public static Achievement achievementClawMachine;
+	public static Achievement achievementStephano;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -129,6 +133,7 @@ public class PennyArcade {
 		
 		rubixCubeID = config.get(Configuration.CATEGORY_GENERAL, "RubixCubeID", 3070).getInt();
 		nyanCatID = config.get(Configuration.CATEGORY_GENERAL, "NyanCatID", 3071).getInt();
+		stephanoID = config.get(Configuration.CATEGORY_GENERAL, "StephanoID", 3072).getInt();
 
 		goldCoinID = config.get(Configuration.CATEGORY_GENERAL, "GoldCoinID", 10000).getInt();
 		emeraldTokenID = config.get(Configuration.CATEGORY_GENERAL, "EmeraldTokenID", 10001).getInt();		
@@ -152,6 +157,7 @@ public class PennyArcade {
 		
 		rubixCube = new BlockRubixCube(rubixCubeID).setBlockName("rubixCube").setCreativeTab(pennyArcadeTab);
 		nyanCat = new BlockNyanCat(nyanCatID).setBlockName("nyanCat").setCreativeTab(pennyArcadeTab);
+		stephano = new BlockStephano(stephanoID).setBlockName("stephano").setCreativeTab(pennyArcadeTab);
 		
 		goldCoin = new Item().setUnlocalizedName("goldCoin").setTextureName(PennyArcade.MODID + ":goldCoin").setCreativeTab(pennyArcadeTab);
 		emeraldToken = new Item().setUnlocalizedName("emeraldToken").setTextureName(PennyArcade.MODID + ":emeraldToken").setCreativeTab(pennyArcadeTab);
@@ -159,12 +165,14 @@ public class PennyArcade {
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		achievementGoldCoins = new Achievement("achievement.goldcoin", "goldcoin", 0, 0, this.goldCoin, AchievementList.buildBetterPickaxe).registerStat();
-		achievementPennyPusher = new Achievement("achievement.pennypusher", "pennypusher", 2, 1, Items.gold_ingot, this.achievementGoldCoins).registerStat();
+		achievementPennyPusher = new Achievement("achievement.pennypusher", "pennypusher", 2, 1, Items.glowstone_dust, this.achievementGoldCoins).registerStat();
+		achievementClawMachine = new Achievement("achievement.clawmachine", "clawmachine", 2, -1, Items.iron_ingot, this.achievementGoldCoins).registerStat();
 		achievementEmeraldToken = new Achievement("achievement.emeraldtoken", "emeraldtoken", 4, 1, this.emeraldToken, this.achievementPennyPusher).registerStat();
 		achievementEmeraldPusher = new Achievement("achievement.emeraldpusher", "emeraldpusher", 6, 2, Items.emerald, this.achievementEmeraldToken).registerStat();
-		achievementNyanCat = new Achievement("achievement.nyancat", "nyancat", 4, -1, Items.cookie, this.achievementEmeraldToken).registerStat();
+		achievementNyanCat = new Achievement("achievement.nyancat", "nyancat", 2, -3, Items.cookie, this.achievementClawMachine).setSpecial().registerStat();
+		achievementStephano = new Achievement("achievement.stephano", "stephano", 4, -1,  Items.gold_ingot, this.achievementClawMachine).setSpecial().registerStat();
 		
-		AchievementPage.registerAchievementPage(new AchievementPage("Penny Arcade Mod", new Achievement[] { this.achievementGoldCoins, this.achievementPennyPusher, this.achievementEmeraldToken, this.achievementEmeraldPusher, this.achievementNyanCat }));
+		AchievementPage.registerAchievementPage(new AchievementPage("Penny Arcade Mod", new Achievement[] { this.achievementGoldCoins, this.achievementPennyPusher, this.achievementEmeraldToken, this.achievementEmeraldPusher, this.achievementNyanCat, this.achievementClawMachine, this.achievementStephano}));
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -208,6 +216,7 @@ public class PennyArcade {
 		
 		GameRegistry.registerTileEntity(TileEntityRubixCube.class, "rubixCube");
 		GameRegistry.registerTileEntity(TileEntityNyanCat.class, "nyanCat");
+		GameRegistry.registerTileEntity(TileEntityStephano.class, "stephano");
 		 
 		registerVillagers();
 	}
@@ -226,6 +235,7 @@ public class PennyArcade {
 	
 		GameRegistry.registerBlock(rubixCube, "rubixCube");
 		GameRegistry.registerBlock(nyanCat, "nyanCat");
+		GameRegistry.registerBlock(stephano, "stephano");
 		
 		GameRegistry.registerItem(goldCoin, "goldCoin");
 		GameRegistry.registerItem(emeraldToken, "emeraldToken");

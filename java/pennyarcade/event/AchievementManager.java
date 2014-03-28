@@ -28,6 +28,9 @@ public class AchievementManager {
 		if(Block.getBlockFromItem(event.crafting.getItem()) == PennyArcade.pennyPusher3) {
 			event.player.addStat(PennyArcade.achievementEmeraldPusher, 1);
 		}
+		if(Block.getBlockFromItem(event.crafting.getItem()) == PennyArcade.clawMachine) {
+			event.player.addStat(PennyArcade.achievementClawMachine, 1);
+		}
 	}
 	
 	@SubscribeEvent
@@ -43,6 +46,9 @@ public class AchievementManager {
 		
 		if(event.pickedUp.getEntityItem().isItemEqual(new ItemStack(PennyArcade.nyanCat))) {
 			event.player.addStat(PennyArcade.achievementNyanCat, 1);
+		}
+		if(event.pickedUp.getEntityItem().isItemEqual(new ItemStack(PennyArcade.stephano))) {
+			event.player.addStat(PennyArcade.achievementStephano, 1);
 		}
 
 	}

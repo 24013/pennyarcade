@@ -32,6 +32,7 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
 		
 		recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.emeraldToken, 2), null, new ItemStack(PennyArcade.rubixCube, 1)));
 		recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.emeraldToken, 3), null, new ItemStack(PennyArcade.nyanCat, 1)));
+		recipeList.add(new MerchantRecipe(new ItemStack(PennyArcade.emeraldToken, 4), null, new ItemStack(PennyArcade.stephano, 1)));
 		
 	}
 

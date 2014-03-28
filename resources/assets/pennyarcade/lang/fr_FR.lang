@@ -1,0 +1,47 @@
+
+itemGroup.pennyArcadeTab=Arcade de Penny Mod
+
+
+
+achievement.goldcoin=Heureux Pièce
+achievement.goldcoin.desc=Faire des pièces d'or.
+
+achievement.pennypusher=Affaire Lucrative
+achievement.pennypusher.desc=Faire un poussoir de pièces à déchets tu pièces sur.
+
+achievement.clawmachine=La Griffe...
+achievement.clawmachine.desc=Obtenir une machine à griffes.
+
+achievement.emeraldtoken=Inestimable
+achievement.emeraldtoken.desc=Obtenir un jeton d'émeraude.
+
+achievement.emeraldpusher=Chic Paries
+achievement.emeraldpusher.desc=Déchets ton jeton d'émeraude par fais un poussoir d'émerauder.
+
+achievement.nyancat=NYAN NYAN NYAN!!!
+achievement.nyancat.desc=Obtenir un jouet de Nyan Cat.
+
+achievement.stephano=Bonjour Pewdie...
+achievement.stephano.desc=Obtenir Stephano.
+
+
+
+tile.pennyPusher1.name=Poussoir de Pièces
+tile.pennyPusher2.name=Poussoir de Pièces
+tile.pennyPusher3.name=Poussoir d'Émeraude
+
+tile.clawMachine.name=Machine à Griffes
+
+tile.miniCreeper.name=Jouet de Creeper
+tile.miniPig.name=Jouet de Pig
+tile.miniEnderman.name=Jouet d'Enderman
+
+tile.rubixCube.name=Cube de Battage
+tile.nyanCat.name=Jouet de Nyan Cat
+tile.stephano.name=Stephano
+
+
+
+
+item.goldCoin.name=Pièce D'or
+item.emeraldToken.name=Jeton D'Émeraude
