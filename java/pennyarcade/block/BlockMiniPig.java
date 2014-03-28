@@ -76,7 +76,7 @@ public class BlockMiniPig extends BlockContainer {
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":miniPig");
  }
 
 }

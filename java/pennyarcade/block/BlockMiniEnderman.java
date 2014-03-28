@@ -21,7 +21,7 @@ public class BlockMiniEnderman extends BlockContainer {
 	public BlockMiniEnderman(int par1) {
 		super(Material.ground);
 		this.setCreativeTab(CreativeTabs.tabDecorations);
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.5F, 1.0F);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class BlockMiniEnderman extends BlockContainer {
 	}
 
 	public void registerBlockIcons(IIconRegister icon) {
-		this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
+		this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":miniEnderman");
 	}
 
 }

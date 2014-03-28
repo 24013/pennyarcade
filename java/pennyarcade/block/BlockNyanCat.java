@@ -15,7 +15,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import pennyarcade.PennyArcade;
 import pennyarcade.block.tileentity.TileEntityNyanCat;
-import pennyarcade.sound.SoundHandler;
 
 public class BlockNyanCat extends BlockContainer {
 
@@ -69,12 +68,12 @@ public class BlockNyanCat extends BlockContainer {
      public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
      {
     	 Random rand = new Random();
-    	 par1World.playSoundAtEntity(par5EntityPlayer, "mob.cat.meow", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+    	 par1World.playSoundAtEntity(par5EntityPlayer, "pennyarcade:toys.nyan", 1.0F, 1.05F);
     	 return true;
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":nyanCat");
  }
 
 }

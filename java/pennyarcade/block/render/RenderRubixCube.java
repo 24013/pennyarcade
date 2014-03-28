@@ -44,7 +44,7 @@ public class RenderRubixCube extends TileEntitySpecialRenderer {
 		
     	GL11.glPushMatrix();
 	    GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
-		ResourceLocation textures = (new ResourceLocation(PennyArcade.MODID + ":textures/blocks/model/pennyarcade/rubix/RubixCube1.png")); 
+		ResourceLocation textures = (new ResourceLocation(PennyArcade.MODID + ":textures/blocks/model/toys/rubix/RubixCube1.png")); 
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
 		GL11.glPushMatrix();
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);

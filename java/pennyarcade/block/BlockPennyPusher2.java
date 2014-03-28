@@ -81,6 +81,8 @@ public class BlockPennyPusher2 extends BlockContainer {
     		 if(!par5EntityPlayer.capabilities.isCreativeMode) itemstack.stackSize = itemstack.stackSize - 1;
     		 if(coinReturnPercentage.nextInt(100) <= PennyArcade.coinChance + 1) {
     			 
+    			 Random pitch = new Random();
+    			 par1World.playSoundAtEntity(par5EntityPlayer, "pennyarcade:pennyarcade.coindrop", 10.0F, (pitch.nextFloat() - pitch.nextFloat()) * 0.2F + 1.0F);
         		 int coinAmount = coinReturnAmount.nextInt(PennyArcade.maxCoinAmount);
         		 if(coinAmount == 0) coinAmount = 1;
         		 par5EntityPlayer.dropItem(PennyArcade.goldCoin, coinAmount);
@@ -119,7 +121,7 @@ public class BlockPennyPusher2 extends BlockContainer {
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyPusher2");
  }
 
 	@Override

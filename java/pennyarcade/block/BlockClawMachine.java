@@ -81,17 +81,24 @@ public class BlockClawMachine extends BlockContainer {
     		 if(!par5EntityPlayer.capabilities.isCreativeMode) itemstack.stackSize = itemstack.stackSize - 1;
     		 
     		 if((prizeChance.nextInt(99) + 1) == PennyArcade.clawMachineChance ) {
-    			 if(prize.nextInt(2) == 0) {
+    			 
+    			 int prizeNo = prize.nextInt(4);
+    			 
+    			 if(prizeNo == 0) {
     				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniCreeper), 1);
     				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won a Creeper Toy!")); 
     			 }
-    			 if(prize.nextInt(2) == 1) {
+    			 if(prizeNo == 1) {
     				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniPig), 1);
     				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won a Pig Toy!")); 
     			 }
-    			 if(prize.nextInt(2) == 2) {
+    			 if(prizeNo == 2) {
     				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniEnderman), 1);
     				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won an Enderman Toy!")); 
+    			 }
+    			 if(prizeNo == 3) {
+    				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.nyanCat), 1);
+    				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won a Nyan Cat Toy!")); 
     			 }
     		 }
     		 else {
@@ -106,7 +113,7 @@ public class BlockClawMachine extends BlockContainer {
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":clawMachine");
  }
 
 	@Override

@@ -82,6 +82,8 @@ public class BlockEmeraldPusher extends BlockContainer {
     		 if(!par5EntityPlayer.capabilities.isCreativeMode) itemstack.stackSize = itemstack.stackSize - 1;
     		 if(coinReturnPercentage.nextInt(100) <= PennyArcade.coinChance + 1) {
     			 
+    			 Random pitch = new Random();
+    			 par1World.playSoundAtEntity(par5EntityPlayer, "pennyarcade:pennyarcade.coindrop", 10.0F, (pitch.nextFloat() - pitch.nextFloat()) * 0.2F + 1.0F);
         		 int coinAmount = coinReturnAmount.nextInt(PennyArcade.maxCoinAmount);
         		 if(coinAmount == 0) coinAmount = 1;
         		 par5EntityPlayer.dropItem(PennyArcade.emeraldToken, coinAmount);
@@ -116,7 +118,7 @@ public class BlockEmeraldPusher extends BlockContainer {
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyArcade");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":emeraldPusher");
  }
 
 	@Override
