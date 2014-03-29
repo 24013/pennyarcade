@@ -27,9 +27,8 @@ public class BlockEmeraldPusher extends BlockContainer {
 	private Random coinReturnPercentage = new Random();
 	private Random coinReturnAmount = new Random();
 
-	public BlockEmeraldPusher(int id) {
+	public BlockEmeraldPusher() {
 		super(Material.iron);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 		this.setHardness(1.5F);
 	}

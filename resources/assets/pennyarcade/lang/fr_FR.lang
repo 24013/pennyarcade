@@ -2,7 +2,6 @@
 itemGroup.pennyArcadeTab=Arcade de Penny Mod
 
 
-
 achievement.goldcoin=Heureux Pièce
 achievement.goldcoin.desc=Faire des pièces d'or.
 
@@ -25,7 +24,6 @@ achievement.stephano=Bonjour Pewdie...
 achievement.stephano.desc=Obtenir Stephano.
 
 
-
 tile.pennyPusher1.name=Poussoir de Pièces
 tile.pennyPusher2.name=Poussoir de Pièces
 tile.pennyPusher3.name=Poussoir d'Émeraude
@@ -40,7 +38,7 @@ tile.rubixCube.name=Cube de Battage
 tile.nyanCat.name=Jouet de Nyan Cat
 tile.stephano.name=Stephano
 
-
+tile.herobrine.name=Jouet de Herobrine
 
 
 item.goldCoin.name=Pièce D'or

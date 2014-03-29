@@ -25,7 +25,6 @@ achievement.stephano=Hello Pewdie...
 achievement.stephano.desc=Obtain Stephano.
 
 
-
 tile.pennyPusher1.name=Penny Pusher
 tile.pennyPusher2.name=Penny Pusher
 tile.pennyPusher3.name=Emerald Pusher
@@ -40,7 +39,7 @@ tile.rubixCube.name=Shuffle Cube
 tile.nyanCat.name=Nyan Cat Toy
 tile.stephano.name=Stephano
 
-
+tile.herobrine.name=Herobrine Toy
 
 
 item.goldCoin.name=Gold Coin

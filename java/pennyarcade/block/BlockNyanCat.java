@@ -18,9 +18,8 @@ import pennyarcade.block.tileentity.TileEntityNyanCat;
 
 public class BlockNyanCat extends BlockContainer {
 
-	public BlockNyanCat(int par1) {
+	public BlockNyanCat() {
 		super(Material.ground);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 	

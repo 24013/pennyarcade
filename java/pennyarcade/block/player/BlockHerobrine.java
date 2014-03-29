@@ -1,11 +1,10 @@
-package pennyarcade.block;
+package pennyarcade.block.player;
 
 import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,18 +13,18 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import pennyarcade.PennyArcade;
-import pennyarcade.block.tileentity.TileEntityMiniPig;
+import pennyarcade.block.tileentity.player.TileEntityHerobrine;
 
-public class BlockMiniPig extends BlockContainer {
+public class BlockHerobrine extends BlockContainer {
 
-	public BlockMiniPig() {
+	public BlockHerobrine() {
 		super(Material.ground);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 	
 	@Override
     public TileEntity createNewTileEntity(World world, int var2) {
-            return new TileEntityMiniPig();
+            return new TileEntityHerobrine();
     }
 	
 	@Override
@@ -34,7 +33,7 @@ public class BlockMiniPig extends BlockContainer {
 		return;
 		}
 
-		TileEntityMiniPig tile = (TileEntityMiniPig) world.getTileEntity(x, y, z);
+		TileEntityHerobrine tile = (TileEntityHerobrine) world.getTileEntity(x, y, z);
 		int l = MathHelper.floor_double((double)(entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		
 		world.setBlockMetadataWithNotify(x, y, z, l, 2);
@@ -43,7 +42,7 @@ public class BlockMiniPig extends BlockContainer {
 			
 			world.setBlock(x, y, z, this);
 			
-		}
+			}
 		}
 	
 	 @Override
@@ -66,16 +65,13 @@ public class BlockMiniPig extends BlockContainer {
      
      public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
      {
-    	 
-    	 
-    	 
     	 Random rand = new Random();
-    	 par1World.playSoundAtEntity(par5EntityPlayer, "mob.pig.say", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+    	 par1World.playSoundAtEntity(par5EntityPlayer, "mob.ghast.scream", 1.0F, 1.05F);
     	 return true;
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":miniPig");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":players." + "herobrine");
  }
 
 }

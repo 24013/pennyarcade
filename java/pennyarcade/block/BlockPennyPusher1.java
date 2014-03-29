@@ -26,9 +26,8 @@ public class BlockPennyPusher1 extends BlockContainer {
 	private Random coinReturnPercentage = new Random();
 	private Random coinReturnAmount = new Random();
 
-	public BlockPennyPusher1(int id) {
+	public BlockPennyPusher1() {
 		super(Material.iron);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 		this.setHardness(1.5F);
 	}

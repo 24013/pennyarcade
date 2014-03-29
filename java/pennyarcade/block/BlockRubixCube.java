@@ -21,7 +21,7 @@ public class BlockRubixCube extends BlockContainer {
 	
 	private Random rand = new Random();
 	
-	public BlockRubixCube(int par1) {
+	public BlockRubixCube() {
 		super(Material.ground);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}

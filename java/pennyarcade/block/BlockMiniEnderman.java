@@ -18,9 +18,8 @@ import pennyarcade.block.tileentity.TileEntityMiniEnderman;
 
 public class BlockMiniEnderman extends BlockContainer {
 
-	public BlockMiniEnderman(int par1) {
+	public BlockMiniEnderman() {
 		super(Material.ground);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.5F, 1.0F);
 	}
 

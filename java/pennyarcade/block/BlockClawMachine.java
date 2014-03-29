@@ -5,10 +5,8 @@ import java.util.Random;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -18,16 +16,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import pennyarcade.PennyArcade;
 import pennyarcade.block.tileentity.TileEntityClawMachine;
-import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 
 public class BlockClawMachine extends BlockContainer {
 	
 	private Random prizeChance = new Random();
 	private Random prize = new Random();
 
-	public BlockClawMachine(int id) {
+	public BlockClawMachine() {
 		super(Material.iron);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 		this.setHardness(1.5F);
 	}

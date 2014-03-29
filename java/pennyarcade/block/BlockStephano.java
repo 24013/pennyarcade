@@ -19,9 +19,8 @@ import pennyarcade.block.tileentity.TileEntityStephano;
 
 public class BlockStephano extends BlockContainer {
 
-	public BlockStephano(int par1) {
+	public BlockStephano() {
 		super(Material.ground);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 	

@@ -18,9 +18,8 @@ import pennyarcade.block.tileentity.TileEntityMiniCreeper;
 
 public class BlockMiniCreeper extends BlockContainer {
 
-	public BlockMiniCreeper(int par1) {
+	public BlockMiniCreeper() {
 		super(Material.ground);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
