@@ -23,12 +23,16 @@ achievement.nyancat.desc=Obtenir un jouet de Nyan Cat.
 achievement.stephano=Bonjour Pewdie...
 achievement.stephano.desc=Obtenir Stephano.
 
+achievement.herobrine=Il est regarde tu...
+achievement.stephano.desc=Obtenir un jouet de Herobrine.
+
 
 tile.pennyPusher1.name=Poussoir de Pièces
 tile.pennyPusher2.name=Poussoir de Pièces
 tile.pennyPusher3.name=Poussoir d'Émeraude
 
 tile.clawMachine.name=Machine à Griffes
+tile.pinballMachine.name=Flipper
 
 tile.miniCreeper.name=Jouet de Creeper
 tile.miniPig.name=Jouet de Pig

@@ -8,6 +8,7 @@ import pennyarcade.block.render.RenderMiniPig;
 import pennyarcade.block.render.RenderNyanCat;
 import pennyarcade.block.render.RenderPennyPusher1;
 import pennyarcade.block.render.RenderPennyPusher2;
+import pennyarcade.block.render.RenderPinball;
 import pennyarcade.block.render.RenderRubixCube;
 import pennyarcade.block.render.RenderStephano;
 import pennyarcade.block.render.player.RenderHerobrine;
@@ -19,6 +20,7 @@ import pennyarcade.block.tileentity.TileEntityMiniPig;
 import pennyarcade.block.tileentity.TileEntityNyanCat;
 import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
+import pennyarcade.block.tileentity.TileEntityPinball;
 import pennyarcade.block.tileentity.TileEntityRubixCube;
 import pennyarcade.block.tileentity.TileEntityStephano;
 import pennyarcade.block.tileentity.player.TileEntityHerobrine;
@@ -33,6 +35,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEmeraldPusher.class, new RenderEmeraldPusher());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityClawMachine.class, new RenderClawMachine());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPinball.class, new RenderPinball());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniCreeper.class, new RenderMiniCreeper());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMiniPig.class, new RenderMiniPig());

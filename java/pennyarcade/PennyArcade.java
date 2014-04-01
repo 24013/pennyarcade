@@ -1,5 +1,7 @@
 package pennyarcade;
 
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -19,6 +21,7 @@ import pennyarcade.block.BlockMiniPig;
 import pennyarcade.block.BlockNyanCat;
 import pennyarcade.block.BlockPennyPusher1;
 import pennyarcade.block.BlockPennyPusher2;
+import pennyarcade.block.BlockPinball;
 import pennyarcade.block.BlockRubixCube;
 import pennyarcade.block.BlockStephano;
 import pennyarcade.block.player.BlockHerobrine;
@@ -30,6 +33,7 @@ import pennyarcade.block.tileentity.TileEntityMiniPig;
 import pennyarcade.block.tileentity.TileEntityNyanCat;
 import pennyarcade.block.tileentity.TileEntityPennyPusher1;
 import pennyarcade.block.tileentity.TileEntityPennyPusher2;
+import pennyarcade.block.tileentity.TileEntityPinball;
 import pennyarcade.block.tileentity.TileEntityRubixCube;
 import pennyarcade.block.tileentity.TileEntityStephano;
 import pennyarcade.block.tileentity.player.TileEntityHerobrine;
@@ -63,6 +67,7 @@ public class PennyArcade {
 	public static Block pennyPusher3;
 	
 	public static Block clawMachine;
+	public static Block pinballMachine;
 
 	public static Block miniCreeper;
 	public static Block miniPig;
@@ -89,6 +94,8 @@ public class PennyArcade {
 
 	public static CreativeTabs pennyArcadeTab;
 	
+	public static Achievement[] achievements;
+	
 	public static Achievement achievementGoldCoins;
 	public static Achievement achievementPennyPusher;
 	public static Achievement achievementEmeraldToken;
@@ -96,6 +103,7 @@ public class PennyArcade {
 	public static Achievement achievementNyanCat;
 	public static Achievement achievementClawMachine;
 	public static Achievement achievementStephano;
+	public static Achievement achievementHerobrine;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -119,6 +127,7 @@ public class PennyArcade {
 		pennyPusher3 = new BlockEmeraldPusher().setBlockName("pennyPusher3").setCreativeTab(pennyArcadeTab);
 		
 		clawMachine = new BlockClawMachine().setBlockName("clawMachine").setCreativeTab(pennyArcadeTab);
+		pinballMachine = new BlockPinball().setBlockName("pinballMachine").setCreativeTab(pennyArcadeTab);
 
 		miniCreeper = new BlockMiniCreeper().setBlockName("miniCreeper").setCreativeTab(pennyArcadeTab);
 		miniPig = new BlockMiniPig().setBlockName("miniPig").setCreativeTab(pennyArcadeTab);
@@ -141,9 +150,12 @@ public class PennyArcade {
 		achievementEmeraldToken = new Achievement("achievement.emeraldtoken", "emeraldtoken", 4, 1, this.emeraldToken, this.achievementPennyPusher).registerStat();
 		achievementEmeraldPusher = new Achievement("achievement.emeraldpusher", "emeraldpusher", 6, 2, Items.emerald, this.achievementEmeraldToken).registerStat();
 		achievementNyanCat = new Achievement("achievement.nyancat", "nyancat", 2, -3, Items.cookie, this.achievementClawMachine).setSpecial().registerStat();
-		achievementStephano = new Achievement("achievement.stephano", "stephano", 4, -1,  Items.gold_ingot, this.achievementClawMachine).setSpecial().registerStat();
+		achievementStephano = new Achievement("achievement.stephano", "stephano", 3, -2,  Items.gold_ingot, this.achievementClawMachine).setSpecial().registerStat();
+		achievementHerobrine = new Achievement("achievement.herobrine", "herobrine", 1, -2,  Items.ghast_tear, this.achievementClawMachine).setSpecial().registerStat();
 		
-		AchievementPage.registerAchievementPage(new AchievementPage("Penny Arcade Mod", new Achievement[] { this.achievementGoldCoins, this.achievementPennyPusher, this.achievementEmeraldToken, this.achievementEmeraldPusher, this.achievementNyanCat, this.achievementClawMachine, this.achievementStephano}));
+		achievements = new Achievement[] { this.achievementGoldCoins, this.achievementPennyPusher, this.achievementEmeraldToken, this.achievementEmeraldPusher, this.achievementNyanCat, this.achievementClawMachine, this.achievementStephano, this.achievementHerobrine};
+		
+		AchievementPage.registerAchievementPage(new AchievementPage("Penny Arcade Mod", this.achievements));
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -170,6 +182,7 @@ public class PennyArcade {
 		GameRegistry.addRecipe(new ItemStack(pennyPusher3, 1), new Object[] { "IEI", "EPE", "IEI", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.emerald });
 		
 		GameRegistry.addRecipe(new ItemStack(clawMachine, 1), new Object[] { "IEI", "PPP", "IOI", Character.valueOf('I'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.glowstone_dust, Character.valueOf('O'), Blocks.obsidian });
+		GameRegistry.addRecipe(new ItemStack(pinballMachine, 1), new Object[] { "RRR", "IPI", "I I", Character.valueOf('R'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('I'), Items.iron_ingot });
 	}
 
 
@@ -180,6 +193,7 @@ public class PennyArcade {
 		GameRegistry.registerTileEntity(TileEntityEmeraldPusher.class, "pennyPusher3");
 		
 		GameRegistry.registerTileEntity(TileEntityClawMachine.class, "clawMachine");
+		GameRegistry.registerTileEntity(TileEntityPinball.class, "pinballMachine");
 
 		GameRegistry.registerTileEntity(TileEntityMiniCreeper.class, "miniCreeper");
 		GameRegistry.registerTileEntity(TileEntityMiniPig.class, "miniPig");
@@ -201,6 +215,7 @@ public class PennyArcade {
 		GameRegistry.registerBlock(pennyPusher3, "pennyPusher3");
 		
 		GameRegistry.registerBlock(clawMachine, "clawMachine");
+		GameRegistry.registerBlock(pinballMachine, "pinballMachine");
 
 		GameRegistry.registerBlock(miniCreeper, "miniCreeper");
 		GameRegistry.registerBlock(miniPig, "miniPig");

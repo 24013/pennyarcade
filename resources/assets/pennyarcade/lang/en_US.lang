@@ -2,7 +2,6 @@
 itemGroup.pennyArcadeTab=Penny Arcade Mod
 
 
-
 achievement.goldcoin=Lucky Penny
 achievement.goldcoin.desc=Craft some Gold Coins.
 
@@ -24,12 +23,16 @@ achievement.nyancat.desc=Obtain a Nyan Cat Toy.
 achievement.stephano=Hello Pewdie...
 achievement.stephano.desc=Obtain Stephano.
 
+achievement.herobrine=He's Watching You...
+achievement.herobrine.desc=Obtain a Herobrine Toy.
+
 
 tile.pennyPusher1.name=Penny Pusher
 tile.pennyPusher2.name=Penny Pusher
 tile.pennyPusher3.name=Emerald Pusher
 
 tile.clawMachine.name=Claw Machine
+tile.pinballMachine.name=Pinball Machine
 
 tile.miniCreeper.name=Creeper Toy
 tile.miniPig.name=Pig Toy
