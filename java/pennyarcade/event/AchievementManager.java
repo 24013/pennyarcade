@@ -50,6 +50,9 @@ public class AchievementManager {
 		if(event.pickedUp.getEntityItem().isItemEqual(new ItemStack(PennyArcade.stephano))) {
 			event.player.addStat(PennyArcade.achievementStephano, 1);
 		}
+		if(event.pickedUp.getEntityItem().isItemEqual(new ItemStack(PennyArcade.playerHerobrine))) {
+			event.player.addStat(PennyArcade.achievementHerobrine, 1);
+		}
 
 	}
 }

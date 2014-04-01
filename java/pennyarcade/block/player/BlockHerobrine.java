@@ -71,7 +71,7 @@ public class BlockHerobrine extends BlockContainer {
      }
      
      public void registerBlockIcons(IIconRegister icon) {
-         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":players." + "herobrine");
+         this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":players/herobrine");
  }
 
 }
