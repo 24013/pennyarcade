@@ -53,7 +53,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 public class PennyArcade {
 
 	public static final String MODID = "pennyarcade";
-	public static final String VERSION = "Alpha Testing 1.2";
+	public static final String VERSION = "Alpha Testing 1.3";
 
 	@Instance(MODID)
 	public static PennyArcade instance;
@@ -182,7 +182,7 @@ public class PennyArcade {
 		GameRegistry.addRecipe(new ItemStack(pennyPusher3, 1), new Object[] { "IEI", "EPE", "IEI", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.emerald });
 		
 		GameRegistry.addRecipe(new ItemStack(clawMachine, 1), new Object[] { "IEI", "PPP", "IOI", Character.valueOf('I'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.glowstone_dust, Character.valueOf('O'), Blocks.obsidian });
-		GameRegistry.addRecipe(new ItemStack(pinballMachine, 1), new Object[] { "RRR", "IPI", "I I", Character.valueOf('R'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('I'), Items.iron_ingot });
+		GameRegistry.addRecipe(new ItemStack(pinballMachine, 1), new Object[] { "RGR", "IPI", "I I", Character.valueOf('R'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('I'), Items.iron_ingot, Character.valueOf('G'), Items.glowstone_dust });
 	}
 
 
