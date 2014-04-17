@@ -53,7 +53,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 public class PennyArcade {
 
 	public static final String MODID = "pennyarcade";
-	public static final String VERSION = "Alpha Testing 1.3";
+	public static final String VERSION = "Alpha 1.0";
 
 	@Instance(MODID)
 	public static PennyArcade instance;
