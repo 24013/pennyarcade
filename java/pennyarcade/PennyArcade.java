@@ -1,7 +1,5 @@
 package pennyarcade;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -13,30 +11,10 @@ import net.minecraft.stats.AchievementList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.config.Configuration;
-import pennyarcade.block.BlockClawMachine;
-import pennyarcade.block.BlockEmeraldPusher;
-import pennyarcade.block.BlockMiniCreeper;
-import pennyarcade.block.BlockMiniEnderman;
-import pennyarcade.block.BlockMiniPig;
-import pennyarcade.block.BlockNyanCat;
-import pennyarcade.block.BlockPennyPusher1;
-import pennyarcade.block.BlockPennyPusher2;
-import pennyarcade.block.BlockPinball;
-import pennyarcade.block.BlockRubixCube;
-import pennyarcade.block.BlockStephano;
+import pennyarcade.block.*;
 import pennyarcade.block.player.BlockHerobrine;
-import pennyarcade.block.tileentity.TileEntityClawMachine;
-import pennyarcade.block.tileentity.TileEntityEmeraldPusher;
-import pennyarcade.block.tileentity.TileEntityMiniCreeper;
-import pennyarcade.block.tileentity.TileEntityMiniEnderman;
-import pennyarcade.block.tileentity.TileEntityMiniPig;
-import pennyarcade.block.tileentity.TileEntityNyanCat;
-import pennyarcade.block.tileentity.TileEntityPennyPusher1;
-import pennyarcade.block.tileentity.TileEntityPennyPusher2;
-import pennyarcade.block.tileentity.TileEntityPinball;
-import pennyarcade.block.tileentity.TileEntityRubixCube;
-import pennyarcade.block.tileentity.TileEntityStephano;
-import pennyarcade.block.tileentity.player.TileEntityHerobrine;
+import pennyarcade.block.tileentity.*;
+import pennyarcade.block.tileentity.player.*;
 import pennyarcade.entity.villager.VillagerTradeHandler;
 import pennyarcade.event.AchievementManager;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -53,7 +31,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 public class PennyArcade {
 
 	public static final String MODID = "pennyarcade";
-	public static final String VERSION = "Alpha 1.0";
+	public static final String VERSION = "Alpha 1.1";
 
 	@Instance(MODID)
 	public static PennyArcade instance;
@@ -68,6 +46,7 @@ public class PennyArcade {
 	
 	public static Block clawMachine;
 	public static Block pinballMachine;
+	public static Block fruitMachine;
 
 	public static Block miniCreeper;
 	public static Block miniPig;
@@ -128,6 +107,7 @@ public class PennyArcade {
 		
 		clawMachine = new BlockClawMachine().setBlockName("clawMachine").setCreativeTab(pennyArcadeTab);
 		pinballMachine = new BlockPinball().setBlockName("pinballMachine").setCreativeTab(pennyArcadeTab);
+		fruitMachine = new BlockFruitMachine().setBlockName("fruitMachine").setCreativeTab(pennyArcadeTab);
 
 		miniCreeper = new BlockMiniCreeper().setBlockName("miniCreeper").setCreativeTab(pennyArcadeTab);
 		miniPig = new BlockMiniPig().setBlockName("miniPig").setCreativeTab(pennyArcadeTab);
@@ -174,7 +154,9 @@ public class PennyArcade {
 	}
 
 	public void addCraftingRecipes() {
-
+		
+		ItemStack lapiz = new ItemStack(Items.dye, 1, 4);
+		
 		GameRegistry.addRecipe(new ItemStack(goldCoin, 1), new Object[] { "XX", Character.valueOf('X'), Items.gold_nugget });
 
 		GameRegistry.addRecipe(new ItemStack(pennyPusher1, 1), new Object[] { "III", "IPI", "IEI", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.emerald });
@@ -183,6 +165,7 @@ public class PennyArcade {
 		
 		GameRegistry.addRecipe(new ItemStack(clawMachine, 1), new Object[] { "IEI", "PPP", "IOI", Character.valueOf('I'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.glowstone_dust, Character.valueOf('O'), Blocks.obsidian });
 		GameRegistry.addRecipe(new ItemStack(pinballMachine, 1), new Object[] { "RGR", "IPI", "I I", Character.valueOf('R'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('I'), Items.iron_ingot, Character.valueOf('G'), Items.glowstone_dust });
+		GameRegistry.addRecipe(new ItemStack(fruitMachine, 1), new Object[] { "BFB", "BDB", "BRB", Character.valueOf('B'), lapiz, Character.valueOf('R'), Items.redstone, Character.valueOf('D'), Items.diamond, Character.valueOf('G'), Items.melon });
 	}
 
 
@@ -194,6 +177,7 @@ public class PennyArcade {
 		
 		GameRegistry.registerTileEntity(TileEntityClawMachine.class, "clawMachine");
 		GameRegistry.registerTileEntity(TileEntityPinball.class, "pinballMachine");
+		GameRegistry.registerTileEntity(TileEntityFruitMachine.class, "fruitMachine");
 
 		GameRegistry.registerTileEntity(TileEntityMiniCreeper.class, "miniCreeper");
 		GameRegistry.registerTileEntity(TileEntityMiniPig.class, "miniPig");
@@ -216,6 +200,7 @@ public class PennyArcade {
 		
 		GameRegistry.registerBlock(clawMachine, "clawMachine");
 		GameRegistry.registerBlock(pinballMachine, "pinballMachine");
+		GameRegistry.registerBlock(fruitMachine, "fruitMachine");
 
 		GameRegistry.registerBlock(miniCreeper, "miniCreeper");
 		GameRegistry.registerBlock(miniPig, "miniPig");
