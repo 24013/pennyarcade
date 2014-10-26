@@ -6,6 +6,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +17,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import pennyarcade.PennyArcade;
 import pennyarcade.block.tileentity.TileEntityClawMachine;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockClawMachine extends BlockContainer {
 	
@@ -61,10 +64,6 @@ public class BlockClawMachine extends BlockContainer {
              return false;
      }
      
-     public void onBlockPlacedBy() {
-    	 
-     }
-     
      public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
      {
     	 ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
@@ -81,19 +80,23 @@ public class BlockClawMachine extends BlockContainer {
     			 int prizeNo = prize.nextInt(4);
     			 
     			 if(prizeNo == 0) {
-    				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniCreeper), 1);
+    				 EntityItem item = par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniCreeper), 1);
+    				 item.delayBeforeCanPickup = 0;
     				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won a Creeper Toy!")); 
     			 }
     			 if(prizeNo == 1) {
-    				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniPig), 1);
+    				 EntityItem item = par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniPig), 1);
+    				 item.delayBeforeCanPickup = 0;
     				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won a Pig Toy!")); 
     			 }
     			 if(prizeNo == 2) {
-    				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniEnderman), 1);
+    				 EntityItem item = par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.miniEnderman), 1);
+    				 item.delayBeforeCanPickup = 0;
     				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won an Enderman Toy!")); 
     			 }
     			 if(prizeNo == 3) {
-    				 par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.nyanCat), 1);
+    				 EntityItem item = par5EntityPlayer.dropItem(Item.getItemFromBlock(PennyArcade.nyanCat), 1);
+    				 item.delayBeforeCanPickup = 0;
     				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "[Claw Machine] " + "Yay! You won a Nyan Cat Toy!")); 
     			 }
     		 }
@@ -107,7 +110,8 @@ public class BlockClawMachine extends BlockContainer {
     		 return false;
     	 }
      }
-     
+    
+     @SideOnly(Side.CLIENT)
      public void registerBlockIcons(IIconRegister icon) {
          this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":clawMachine");
  }

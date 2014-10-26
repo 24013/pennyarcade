@@ -2,6 +2,8 @@ package pennyarcade.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -71,6 +73,7 @@ public class BlockRubixCube extends BlockContainer {
 		return false;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister icon) {
 		this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":rubixCube");
 	}

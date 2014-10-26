@@ -1,0 +1,13 @@
+[
+{
+  "modid": "pvzmcw",
+  "name": "Plants vs Zombies: Minecraft Warfare",
+  "version": "The Dark Ages Update (Part 1)"
+  "description": "Brings PvZ to Minecraft! Adds a variety of plants to defend your home from a vast array of zombies!",
+  "mcversion": "1.7.2",
+  "authorList": ["CustomEpicness"],
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

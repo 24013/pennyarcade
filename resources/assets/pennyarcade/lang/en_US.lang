@@ -30,9 +30,11 @@ achievement.herobrine.desc=Obtain a Herobrine Toy.
 tile.pennyPusher1.name=Penny Pusher
 tile.pennyPusher2.name=Penny Pusher
 tile.pennyPusher3.name=Emerald Pusher
+tile.outOfOrder.name=Out Of Order Machine
 
 tile.clawMachine.name=Claw Machine
 tile.pinballMachine.name=Pinball Machine
+tile.fruitMachine.name=Fruit Machine
 
 tile.miniCreeper.name=Creeper Toy
 tile.miniPig.name=Pig Toy

@@ -2,6 +2,8 @@ package pennyarcade.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -61,11 +63,6 @@ public class BlockMiniCreeper extends BlockContainer {
 		return false;
 	}
 
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4,
-			EntityLiving par5EntityLiving, ItemStack par6ItemStack) {
-
-	}
-
 	public boolean onBlockActivated(World par1World, int par2, int par3,
 			int par4, EntityPlayer par5EntityPlayer, int par6, float par7,
 			float par8, float par9) {
@@ -76,6 +73,7 @@ public class BlockMiniCreeper extends BlockContainer {
 		return true;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister icon) {
 		this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":miniCreeper");
 	}

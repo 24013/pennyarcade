@@ -31,7 +31,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 public class PennyArcade {
 
 	public static final String MODID = "pennyarcade";
-	public static final String VERSION = "Alpha 1.1";
+	public static final String VERSION = "Alpha 1.2";
 
 	@Instance(MODID)
 	public static PennyArcade instance;
@@ -43,6 +43,7 @@ public class PennyArcade {
 	public static Block pennyPusher1;
 	public static Block pennyPusher2;
 	public static Block pennyPusher3;
+	public static Block outOfOrderMachine;
 	
 	public static Block clawMachine;
 	public static Block pinballMachine;
@@ -104,6 +105,7 @@ public class PennyArcade {
 		pennyPusher1 = new BlockPennyPusher1().setBlockName("pennyPusher1").setCreativeTab(pennyArcadeTab);
 		pennyPusher2 = new BlockPennyPusher2().setBlockName("pennyPusher2").setCreativeTab(pennyArcadeTab);
 		pennyPusher3 = new BlockEmeraldPusher().setBlockName("pennyPusher3").setCreativeTab(pennyArcadeTab);
+		outOfOrderMachine = new BlockOutOfOrderMachine().setBlockName("outOfOrder").setCreativeTab(pennyArcadeTab);
 		
 		clawMachine = new BlockClawMachine().setBlockName("clawMachine").setCreativeTab(pennyArcadeTab);
 		pinballMachine = new BlockPinball().setBlockName("pinballMachine").setCreativeTab(pennyArcadeTab);
@@ -165,7 +167,7 @@ public class PennyArcade {
 		
 		GameRegistry.addRecipe(new ItemStack(clawMachine, 1), new Object[] { "IEI", "PPP", "IOI", Character.valueOf('I'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('E'), Items.glowstone_dust, Character.valueOf('O'), Blocks.obsidian });
 		GameRegistry.addRecipe(new ItemStack(pinballMachine, 1), new Object[] { "RGR", "IPI", "I I", Character.valueOf('R'), Items.redstone, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('I'), Items.iron_ingot, Character.valueOf('G'), Items.glowstone_dust });
-		GameRegistry.addRecipe(new ItemStack(fruitMachine, 1), new Object[] { "BFB", "BDB", "BRB", Character.valueOf('B'), lapiz, Character.valueOf('R'), Items.redstone, Character.valueOf('D'), Items.diamond, Character.valueOf('G'), Items.melon });
+		GameRegistry.addRecipe(new ItemStack(fruitMachine, 1), new Object[] { "BFB", "BDB", "BRB", Character.valueOf('B'), lapiz, Character.valueOf('R'), Items.redstone, Character.valueOf('D'), Items.diamond, Character.valueOf('F'), Items.melon });
 	}
 
 
@@ -174,6 +176,7 @@ public class PennyArcade {
 		GameRegistry.registerTileEntity(TileEntityPennyPusher1.class, "pennyPusher1");
 		GameRegistry.registerTileEntity(TileEntityPennyPusher2.class, "pennyPusher2");
 		GameRegistry.registerTileEntity(TileEntityEmeraldPusher.class, "pennyPusher3");
+		GameRegistry.registerTileEntity(TileEntityOutOfOrderMachine.class, "outOfOrder");
 		
 		GameRegistry.registerTileEntity(TileEntityClawMachine.class, "clawMachine");
 		GameRegistry.registerTileEntity(TileEntityPinball.class, "pinballMachine");
@@ -197,6 +200,7 @@ public class PennyArcade {
 		GameRegistry.registerBlock(pennyPusher1, "pennyPusher1");
 		GameRegistry.registerBlock(pennyPusher2, "pennyPusher2");
 		GameRegistry.registerBlock(pennyPusher3, "pennyPusher3");
+		GameRegistry.registerBlock(outOfOrderMachine, "outOfOrder");
 		
 		GameRegistry.registerBlock(clawMachine, "clawMachine");
 		GameRegistry.registerBlock(pinballMachine, "pinballMachine");

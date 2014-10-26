@@ -2,10 +2,13 @@ package pennyarcade.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -101,23 +104,30 @@ public class BlockPinball extends BlockContainer {
     					par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Unlucky! You don't win anything!"));
     				}
     				else if(total >= 3000 && total < 4500) {
-    					par5EntityPlayer.dropItem(PennyArcade.goldCoin, 1);
-    					par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Congratulations! You won a gold coin!"));
+    					Random coins = new Random();
+    					int y = (coins.nextInt(3) + 1);
+    					EntityItem item = par5EntityPlayer.dropItem(PennyArcade.goldCoin, y);
+    					item.delayBeforeCanPickup = 0;
+    					par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Congratulations! You won " + y + " gold coin!"));
     				}
     				else if(total >= 4500 && total < 5000) {
-    					par5EntityPlayer.dropItem(PennyArcade.emeraldToken, 1);
+    					EntityItem item = par5EntityPlayer.dropItem(PennyArcade.emeraldToken, 1);
+    					item.delayBeforeCanPickup = 0;
     					par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Congratulations! You won an emerald token!"));
     				}
     				else if(total >= 5000 && total < 5500) {
-    					par5EntityPlayer.dropItem(Items.emerald, 1);
+    					EntityItem item = par5EntityPlayer.dropItem(Items.emerald, 1);
+    					item.delayBeforeCanPickup = 0;
     					par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Congratulations! You won an emerald!"));
     				}
     				else if(total >= 5500 && total < 6000) {
-    					par5EntityPlayer.dropItem(Items.diamond, 1);
+    					EntityItem item = par5EntityPlayer.dropItem(Items.diamond, 1);
+    					item.delayBeforeCanPickup = 0;
     					par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Congratulations! You won a diamond!"));
     				}
     				else if(total == 6000) {
-    					par5EntityPlayer.dropItem(Item.getItemFromBlock(Blocks.diamond_block), 1);
+    					EntityItem item = par5EntityPlayer.dropItem(Item.getItemFromBlock(Blocks.diamond_block), 1);
+    					item.delayBeforeCanPickup = 0;
     					par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "Max Score! Diamond Block!"));
     				}
     			}
@@ -127,6 +137,7 @@ public class BlockPinball extends BlockContainer {
 		return true;
      }
      
+     @SideOnly(Side.CLIENT)
      public void registerBlockIcons(IIconRegister icon) {
          this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pinball");
  }

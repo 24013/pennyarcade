@@ -11,8 +11,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 public class AchievementManager {
-
-	private static EntityPlayer player;
 	
 	@SubscribeEvent
 	public void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {

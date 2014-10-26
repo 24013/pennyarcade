@@ -2,11 +2,14 @@ package pennyarcade.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -88,19 +91,27 @@ public class BlockEmeraldPusher extends BlockContainer {
         		 par5EntityPlayer.dropItem(PennyArcade.emeraldToken, coinAmount);
         		 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "[Emerald Pusher] " + "Yay! You won " + coinAmount + " Emerald Tokens!"));
         		 
-        		 if(prizeChance.nextInt(100) <= PennyArcade.prizeChance + 1) {
-        			 int wonPrize = prize.nextInt(2);
+        		 int awardChance = prizeChance.nextInt(100);
+        		 
+        		 if(awardChance <= PennyArcade.prizeChance + 1) {
         			 
-        			 if(wonPrize == 0) { 
-        				 par5EntityPlayer.dropItem(PennyArcade.emeraldToken, PennyArcade.maxCoinAmount);
-        				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "[Emerald Pusher] " + "Bonus Prize! You get 4 Emerald Tokens!")); 
+        			 int wonPrize = prize.nextInt(100);
+        			 
+        			 if(wonPrize <= 80) { 
+        				 Random x = new Random();
+        				 int y = PennyArcade.maxCoinAmount * (x.nextInt(3)) + 1;
+        				 EntityItem item = par5EntityPlayer.dropItem(PennyArcade.emeraldToken, y);
+        				 item.delayBeforeCanPickup = 0;
+        				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "[Emerald Pusher] " + "Bonus Prize! You get " + y + " Emerald Tokens!")); 
         			 }
-        			 if(wonPrize == 1) { 
-        				 par5EntityPlayer.dropItem(Item.getItemFromBlock(Blocks.diamond_block), 1);
+        			 if(wonPrize > 80 && wonPrize <= 90) { 
+        				 EntityItem item = par5EntityPlayer.dropItem(Item.getItemFromBlock(Blocks.diamond_block), 1);
+        				 item.delayBeforeCanPickup = 0;
         				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "[Emerald Pusher] " + "Bonus Prize! You get a diamond block!")); 
         			 }
-        			 if(wonPrize == 2) { 
-        				 par5EntityPlayer.dropItem(Item.getItemFromBlock(Blocks.emerald_block), 1);
+        			 if(wonPrize > 90) { 
+        				 EntityItem item = par5EntityPlayer.dropItem(Item.getItemFromBlock(Blocks.emerald_block), 1);
+        				 item.delayBeforeCanPickup = 0;
         				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "[Emerald Pusher] " + "Bonus Prize! You get an emerald block!")); 
         			 }
         		 }
@@ -116,6 +127,7 @@ public class BlockEmeraldPusher extends BlockContainer {
     	 }
      }
      
+     @SideOnly(Side.CLIENT)
      public void registerBlockIcons(IIconRegister icon) {
          this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":emeraldPusher");
  }

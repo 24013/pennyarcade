@@ -2,11 +2,14 @@ package pennyarcade.block;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -64,10 +67,6 @@ public class BlockPennyPusher2 extends BlockContainer {
              return false;
      }
      
-     public void onBlockPlacedBy() {
-    	 
-     }
-     
      public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
      {
     	 ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
@@ -88,23 +87,29 @@ public class BlockPennyPusher2 extends BlockContainer {
         		 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Yay! You won " + coinAmount + " coins!"));
         		 
         		 if(prizeChance.nextInt(100) <= PennyArcade.prizeChance + 1) {
-        			 int wonPrize = prize.nextInt(3);
         			 
-        			 if(wonPrize == 0) { 
-        				 par5EntityPlayer.dropItem(PennyArcade.goldCoin, PennyArcade.maxCoinAmount);
-        				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Bonus Prize! You get 4 coins!")); 
+        			 int wonPrize = prize.nextInt(100);
+        			 
+        			 if(wonPrize <= 50) { 
+        				 int x = PennyArcade.maxCoinAmount * (coinReturnAmount.nextInt(3) + 1);
+        				 EntityItem item = par5EntityPlayer.dropItem(PennyArcade.goldCoin, x);
+        				 item.delayBeforeCanPickup = 0;
+        				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Bonus Prize! You get " + x + " coins!"));
         			 }
-        			 if(wonPrize == 1) { 
-        				 par5EntityPlayer.dropItem(Items.diamond, 1);
+        			 if(wonPrize > 50 && wonPrize <= 65) { 
+        				 EntityItem item = par5EntityPlayer.dropItem(Items.diamond, 1);
+        				 item.delayBeforeCanPickup = 0;
         				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Bonus Prize! You get a diamond!")); 
         			 }
-        			 if(wonPrize == 2) { 
-        				 par5EntityPlayer.dropItem(Items.emerald, 1);
+        			 if(wonPrize > 65 && wonPrize <= 80) { 
+        				 EntityItem item = par5EntityPlayer.dropItem(Items.emerald, 1);
+        				 item.delayBeforeCanPickup = 0;
         				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Bonus Prize! You get an emerald!")); 
         			 }
-        			 if(wonPrize == 3) { 
-        				 par5EntityPlayer.dropItem(PennyArcade.emeraldToken, 1);
-        				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Bonus Prize! You get an emerald token!")); 
+        			 if(wonPrize > 80) { 
+        				 EntityItem item = par5EntityPlayer.dropItem(PennyArcade.emeraldToken, 3);
+        				 item.delayBeforeCanPickup = 0;
+        				 par5EntityPlayer.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[Penny Pusher] " + "Bonus Prize! You get 3 Emerald Tokens!")); 
         			 }
         		 }
         	 }
@@ -119,6 +124,7 @@ public class BlockPennyPusher2 extends BlockContainer {
     	 }
      }
      
+     @SideOnly(Side.CLIENT)
      public void registerBlockIcons(IIconRegister icon) {
          this.blockIcon = icon.registerIcon(PennyArcade.MODID + ":pennyPusher2");
  }
